@@ -15,6 +15,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using WpfAppCallingApi.Models;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace WpfAppCallingApi
 {
@@ -37,21 +38,6 @@ namespace WpfAppCallingApi
 
 
         }
-
-        /*public DataTable Select(string selectSQL) // функция подключения к базе данных и обработка запросов
-        {
-            DataTable dataTable = new DataTable("dataBase");                // создаём таблицу в приложении
-                                                                            // подключаемся к базе данных
-            SqlConnection sqlConnection = new SqlConnection("server=DESKTOP-HIOKBS7;Trusted_Connection=Yes;DataBase=Drug_treatment_clinic;");
-            sqlConnection.Open();                                           // открываем базу данных
-            SqlCommand sqlCommand = sqlConnection.CreateCommand();          // создаём команду
-            sqlCommand.CommandText = selectSQL;                             // присваиваем команде текст
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand); // создаём обработчик
-            sqlDataAdapter.Fill(dataTable);                                 // возращаем таблицу с результатом
-            return dataTable;
-        }*/
-
-
 
         #region CONSUMPTION
         private void btnLoadConsumption_Click(object sender, RoutedEventArgs e)
@@ -355,58 +341,69 @@ namespace WpfAppCallingApi
         #region DEPARTMENTS
 
 
-private async void btnAddDepartments_Click(object sender, RoutedEventArgs e)
-{
-    try
-    {
-        if (string.IsNullOrWhiteSpace(txtDepartmentId.Text) || string.IsNullOrWhiteSpace(txtName.Text) ||
-            string.IsNullOrWhiteSpace(txtResponsibleEmployee.Text))
+        private async void btnAddDepartments_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Заполните все обязательные поля", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtDepartmentId.Text) || string.IsNullOrWhiteSpace(txtName.Text) ||
+                    string.IsNullOrWhiteSpace(txtResponsibleEmployee.Text))
+                {
+                    MessageBox.Show("Заполните все обязательные поля", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                int departmentId;
+                if (!int.TryParse(txtDepartmentId.Text, out departmentId))
+                {
+                    MessageBox.Show("Ошибка при добавлении подразделения", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var newDepartment = new Departments
+                {
+                    Id = departmentId,
+                    name = txtName.Text,
+                    responsibleEmployee = txtResponsibleEmployee.Text
+                };
+
+                if (IsConsumptionIdExistsDepartment(departmentId))
+                {
+                    MessageBox.Show("Подразделение с таким же идентификатором уже существует", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                /*if (!ValidateEmail(txtContactInfo.Text))
+                {
+                    MessageBox.Show("Неверный формат почты", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }*/
+
+                var json = JsonConvert.SerializeObject(newDepartment);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("departments", content);
+                response.EnsureSuccessStatusCode();
+
+                MessageBox.Show("Подразделение успешно добавлено", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                btnLoadDepartments_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private bool IsConsumptionIdExistsDepartment(int departmentId)
+        {
+            var existingConsumption = (List<Departments>)dgDepartment.ItemsSource;
+            return existingConsumption.Any(p => p.Id == departmentId);
         }
 
-        int departmentId;
-        if (!int.TryParse(txtDepartmentId.Text, out departmentId))
+        /*public bool ValidateEmail(string email)
         {
-            MessageBox.Show("Ошибка при добавлении подразделения", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
-        }
+            // Паттерн для проверки формата электронной почты
+            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
-        var newDepartment = new Departments
-        {
-            Id = departmentId,
-            name = txtName.Text,
-            responsibleEmployee = txtResponsibleEmployee.Text
-        };
-
-        /*if (!ValidateEmail(txtContactInfo.Text))
-        {
-            MessageBox.Show("Неверный формат почты", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+            return Regex.IsMatch(email, emailPattern);
         }*/
-
-        var json = JsonConvert.SerializeObject(newDepartment);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = await client.PostAsync("departments", content);
-        response.EnsureSuccessStatusCode();
-
-        MessageBox.Show("Подразделение успешно добавлено", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-        btnLoadDepartments_Click(sender, e);
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    }
-}
-
-/*public bool ValidateEmail(string email)
-{
-    // Паттерн для проверки формата электронной почты
-    string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-
-    return Regex.IsMatch(email, emailPattern);
-}*/
 
         private async void btnLoadDepartments_Click(object sender, RoutedEventArgs e)
         {
@@ -422,37 +419,37 @@ private async void btnAddDepartments_Click(object sender, RoutedEventArgs e)
             }
         }
 
-private async void btnUpdateDepartments_Click(object sender, RoutedEventArgs e)
-{
-    try
-    {
-        int departmentId;
-        if (!int.TryParse(txtDepartmentId.Text, out departmentId))
+        private async void btnUpdateDepartments_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ошибка при обновлении подразделения", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+            try
+            {
+                int departmentId;
+                if (!int.TryParse(txtDepartmentId.Text, out departmentId))
+                {
+                    MessageBox.Show("Ошибка при обновлении подразделения", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var updateDepartment = new Departments
+                {
+                    Id = departmentId,
+                    name = txtName.Text,
+                    responsibleEmployee = txtResponsibleEmployee.Text
+                };
+
+                var json = JsonConvert.SerializeObject(updateDepartment);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync($"departments/{departmentId}", content);
+                response.EnsureSuccessStatusCode();
+
+                MessageBox.Show("Подразделение успешно обновлено", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                btnLoadDepartments_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
-
-        var updateDepartment = new Departments
-        {
-            Id = departmentId,
-            name = txtName.Text,
-            responsibleEmployee = txtResponsibleEmployee.Text
-        };
-
-        var json = JsonConvert.SerializeObject(updateDepartment);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = await client.PutAsync($"departments/{departmentId}", content);
-        response.EnsureSuccessStatusCode();
-
-        MessageBox.Show("Подразделение успешно обновлено", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-        btnLoadDepartments_Click(sender, e);
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    }
-}
         private async void MenuItemDeleteDepartment_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -498,140 +495,151 @@ private async void btnUpdateDepartments_Click(object sender, RoutedEventArgs e)
     }
 }
 
-private void txtFilterResponsibleEmployee_TextChanged(object sender, TextChangedEventArgs e)
-{
-    ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgDepartment.ItemsSource);
-
-    if (collectionView != null)
-    {
-        collectionView.Filter = o =>
+        private void txtFilterResponsibleEmployee_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (o is Departments departments)
-            {
-                return departments.responsibleEmployee.ToLower().StartsWith(txtFilterResponsibleEmployee.Text, StringComparison.OrdinalIgnoreCase);
-            }
-            return false;
-        };
-    }
-}
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgDepartment.ItemsSource);
 
-private void txtSearchInGridDepartments_TextChanged(object sender, TextChangedEventArgs e)
-{
-    TextBox textBox = sender as TextBox;
-
-    if (textBox != null)
-    {
-        ICollectionView view = CollectionViewSource.GetDefaultView(dgDepartment.ItemsSource);
-        if (view != null)
-        {
-            view.Filter = item =>
+            if (collectionView != null)
             {
-                if (item is Departments itemType)
+                collectionView.Filter = o =>
                 {
-                    return itemType.name.ToLower().Contains(textBox.Text) ||
-                    itemType.responsibleEmployee.ToLower().Contains(textBox.Text);
-                }
-                return false;
-            };
+                    if (o is Departments departments)
+                    {
+                        return departments.responsibleEmployee.ToLower().StartsWith(txtFilterResponsibleEmployee.Text, StringComparison.OrdinalIgnoreCase);
+                    }
+                    return false;
+                };
+            }
         }
-    }
-}
+
+        private void txtSearchInGridDepartments_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if (textBox != null)
+            {
+                ICollectionView view = CollectionViewSource.GetDefaultView(dgDepartment.ItemsSource);
+                if (view != null)
+                {
+                    view.Filter = item =>
+                    {
+                        if (item is Departments itemType)
+                        {
+                            return itemType.name.ToLower().Contains(textBox.Text) ||
+                            itemType.responsibleEmployee.ToLower().Contains(textBox.Text);
+                        }
+                        return false;
+                    };
+                }
+            }
+        }
 
 #endregion
 
         #region DRUGS
-private async void btnAddDrug_Click(object sender, RoutedEventArgs e)
-{
+        private async void btnAddDrug_Click(object sender, RoutedEventArgs e)
+        {
 
-    try
-    {
-        if (string.IsNullOrWhiteSpace(txtDrugId.Text) || string.IsNullOrWhiteSpace(txtNameDrug.Text) || 
-                    string.IsNullOrWhiteSpace(txtClassification.Text) || string.IsNullOrWhiteSpace(txtDosage.Text) ||
-                    string.IsNullOrWhiteSpace(txtManufacturer.Text) || string.IsNullOrWhiteSpace(txtCountryOfOrigin.Text))
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtDrugId.Text) || string.IsNullOrWhiteSpace(txtNameDrug.Text) || 
+                            string.IsNullOrWhiteSpace(txtClassification.Text) || string.IsNullOrWhiteSpace(txtDosage.Text) ||
+                            string.IsNullOrWhiteSpace(txtManufacturer.Text) || string.IsNullOrWhiteSpace(txtCountryOfOrigin.Text))
+                        {
+                    MessageBox.Show("Заполните все обязательные поля", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                int dragId;
+                if (!int.TryParse(txtDrugId.Text, out dragId))
                 {
-            MessageBox.Show("Заполните все обязательные поля", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+                    MessageBox.Show("Ошибка при добавлении препарата", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var newDrags = new Drugs
+                {
+                    Id = dragId,
+                    name = txtNameDrug.Text,
+                    classification = txtClassification.Text,
+                    dosage = txtDosage.Text,
+                    manufacturer = txtManufacturer.Text,
+                    countryOfOrigin = txtCountryOfOrigin.Text
+                };
+
+                if (IsConsumptionIdExistsDrug(dragId))
+                {
+                    MessageBox.Show("Препарат с таким же идентификатором уже существует", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var json = JsonConvert.SerializeObject(newDrags);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("drugs", content);
+                response.EnsureSuccessStatusCode();
+
+                MessageBox.Show("Препарат успешно добавлен", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                btnLoadDrug_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private bool IsConsumptionIdExistsDrug(int dradId)
+        {
+            var existingConsumption = (List<Drugs>)dgDrugs.ItemsSource;
+            return existingConsumption.Any(p => p.Id == dradId);
         }
 
-        int dragId;
-        if (!int.TryParse(txtDrugId.Text, out dragId))
+        private async void btnLoadDrug_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ошибка при добавлении препарата", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+            try
+            {
+                var response = await client.GetStringAsync("drugs");
+                var drugs = JsonConvert.DeserializeObject<List<Drugs>>(response);
+                dgDrugs.ItemsSource = drugs;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        var newDrags = new Drugs
+        private async void btnUpdateDrug_Click(object sender, RoutedEventArgs e)
         {
-            Id = dragId,
-            name = txtNameDrug.Text,
-            classification = txtClassification.Text,
-            dosage = txtDosage.Text,
-            manufacturer = txtManufacturer.Text,
-            countryOfOrigin = txtCountryOfOrigin.Text
-        };
+            try
+            {
+                int drugsId;
+                if (!int.TryParse(txtDrugId.Text, out drugsId))
+                {
+                    MessageBox.Show("Ошибка при обновлении препарата", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
-        var json = JsonConvert.SerializeObject(newDrags);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = await client.PostAsync("drugs", content);
-        response.EnsureSuccessStatusCode();
+                var updateDrugs = new Drugs
+                {
+                    Id = drugsId,
+                    name = txtNameDrug.Text,
+                    classification = txtClassification.Text,
+                    dosage = txtDosage.Text,
+                    manufacturer = txtManufacturer.Text,
+                    countryOfOrigin = txtCountryOfOrigin.Text
+                };
 
-        MessageBox.Show("Препарат успешно добавлен", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-        btnLoadDrug_Click(sender, e);
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    }
-}
+                var json = JsonConvert.SerializeObject(updateDrugs);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync($"drugs/{drugsId}", content);
+                response.EnsureSuccessStatusCode();
 
-private async void btnLoadDrug_Click(object sender, RoutedEventArgs e)
-{
-    try
-    {
-        var response = await client.GetStringAsync("drugs");
-        var drugs = JsonConvert.DeserializeObject<List<Drugs>>(response);
-        dgDrugs.ItemsSource = drugs;
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    }
-}
-
-private async void btnUpdateDrug_Click(object sender, RoutedEventArgs e)
-{
-    try
-    {
-        int drugsId;
-        if (!int.TryParse(txtDrugId.Text, out drugsId))
-        {
-            MessageBox.Show("Ошибка при обновлении препарата", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+                MessageBox.Show("Препарат успешно обновлен", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                btnLoadDrug_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
-
-        var updateDrugs = new Drugs
-        {
-            Id = drugsId,
-            name = txtNameDrug.Text,
-            classification = txtClassification.Text,
-            dosage = txtDosage.Text,
-            manufacturer = txtManufacturer.Text,
-            countryOfOrigin = txtCountryOfOrigin.Text
-        };
-
-        var json = JsonConvert.SerializeObject(updateDrugs);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = await client.PutAsync($"drugs/{drugsId}", content);
-        response.EnsureSuccessStatusCode();
-
-        MessageBox.Show("Препарат успешно обновлен", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-        btnLoadDrug_Click(sender, e);
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    }
-}
 
         private async void MenuItemDeleteDrug_Click(object sender, RoutedEventArgs e)
         {
@@ -661,38 +669,38 @@ private async void btnUpdateDrug_Click(object sender, RoutedEventArgs e)
         }
 
         private void txtFilterNameDrug_TextChanged(object sender, TextChangedEventArgs e)
-{
-    ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgDrugs.ItemsSource);
-
-    if (collectionView != null)
-    {
-        collectionView.Filter = o =>
         {
-            if (o is Drugs drugs)
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgDrugs.ItemsSource);
+
+            if (collectionView != null)
             {
-                return drugs.name.ToLower().StartsWith(txtFilterNameDrug.Text, StringComparison.OrdinalIgnoreCase);
+                collectionView.Filter = o =>
+                {
+                    if (o is Drugs drugs)
+                    {
+                        return drugs.name.ToLower().StartsWith(txtFilterNameDrug.Text, StringComparison.OrdinalIgnoreCase);
+                    }
+                    return false;
+                };
             }
-            return false;
-        };
-    }
-}
+        }
 
-private void txtFilterClassification_TextChanged(object sender, TextChangedEventArgs e)
-{
-    ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgDrugs.ItemsSource);
-
-    if (collectionView != null)
-    {
-        collectionView.Filter = o =>
+        private void txtFilterClassification_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (o is Drugs drugs)
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgDrugs.ItemsSource);
+
+            if (collectionView != null)
             {
-                return drugs.classification.ToLower().StartsWith(txtFilterClassification.Text, StringComparison.OrdinalIgnoreCase);
+                collectionView.Filter = o =>
+                {
+                    if (o is Drugs drugs)
+                    {
+                        return drugs.classification.ToLower().StartsWith(txtFilterClassification.Text, StringComparison.OrdinalIgnoreCase);
+                    }
+                    return false;
+                };
             }
-            return false;
-        };
-    }
-}
+        }
 
         private void txtFilterDosage_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -746,124 +754,136 @@ private void txtFilterClassification_TextChanged(object sender, TextChangedEvent
         }
 
         private void txtSearchInGridDrug_TextChanged(object sender, TextChangedEventArgs e)
-{
-    TextBox textBox = sender as TextBox;
-
-    if (textBox != null)
-    {
-        ICollectionView view = CollectionViewSource.GetDefaultView(dgDrugs.ItemsSource);
-        if (view != null)
         {
-            view.Filter = item =>
+            TextBox textBox = sender as TextBox;
+
+            if (textBox != null)
             {
-                if (item is Drugs itemType)
+                ICollectionView view = CollectionViewSource.GetDefaultView(dgDrugs.ItemsSource);
+                if (view != null)
                 {
-                    return itemType.name.ToLower().Contains(textBox.Text) ||
-                    itemType.classification.ToLower().Contains(textBox.Text) ||
-                    itemType.dosage.ToLower().Contains(textBox.Text) ||
-                    itemType.manufacturer.ToLower().Contains(textBox.Text) ||
-                    itemType.countryOfOrigin.ToLower().Contains(textBox.Text);
+                    view.Filter = item =>
+                    {
+                        if (item is Drugs itemType)
+                        {
+                            return itemType.name.ToLower().Contains(textBox.Text) ||
+                            itemType.classification.ToLower().Contains(textBox.Text) ||
+                            itemType.dosage.ToLower().Contains(textBox.Text) ||
+                            itemType.manufacturer.ToLower().Contains(textBox.Text) ||
+                            itemType.countryOfOrigin.ToLower().Contains(textBox.Text);
+                        }
+                        return false;
+                    };
                 }
-                return false;
-            };
+            }
         }
-    }
-}
 
 #endregion
 
         #region INVENTORY
-private async void btnAddInventory_Click(object sender, RoutedEventArgs e)
-{
-    try
-    {
-        if (string.IsNullOrWhiteSpace(txtIDInventory.Text) || string.IsNullOrWhiteSpace(txtIDDrug.Text) ||
-            string.IsNullOrWhiteSpace(txtIDDepartment.Text) || string.IsNullOrWhiteSpace(txtInventoryCheckDate.Text) ||
-            string.IsNullOrWhiteSpace(txtRemainingQuantityOfDrugs.Text) || string.IsNullOrWhiteSpace(txtStorageLocation.Text))
+        private async void btnAddInventory_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Заполните все обязательные поля", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtIDInventory.Text) || string.IsNullOrWhiteSpace(txtIDDrug.Text) ||
+                    string.IsNullOrWhiteSpace(txtIDDepartment.Text) || string.IsNullOrWhiteSpace(txtInventoryCheckDate.Text) ||
+                    string.IsNullOrWhiteSpace(txtRemainingQuantityOfDrugs.Text) || string.IsNullOrWhiteSpace(txtStorageLocation.Text))
+                {
+                    MessageBox.Show("Заполните все обязательные поля", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                int inventoryId;
+                if (!int.TryParse(txtIDInventory.Text, out inventoryId))
+                {
+                    MessageBox.Show("Ошибка при добавлении остатка.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var newInventory = new Inventory
+                {
+                    Id = inventoryId,
+                    idDrag = Int32.Parse(txtIDDrug.Text),
+                    idDepartment = Int32.Parse(txtIDDepartment.Text),
+                    inventoryCheckDate = DateTime.Parse(txtInventoryCheckDate.Text),
+                    remainingQuantityOfDrugs = txtRemainingQuantityOfDrugs.Text,
+                    storageLocation = txtStorageLocation.Text
+                };
+
+                if (IsConsumptionIdExistsInventory(inventoryId))
+                {
+                    MessageBox.Show("Остаток с таким же идентификатором уже существует", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var json = JsonConvert.SerializeObject(newInventory);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("inventory", content);
+                response.EnsureSuccessStatusCode();
+
+                MessageBox.Show("Остаток успешно добавлен", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                btnLoadInventory_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        int inventoryId;
-        if (!int.TryParse(txtIDInventory.Text, out inventoryId))
+        private bool IsConsumptionIdExistsInventory(int inventoryId)
         {
-            MessageBox.Show("Ошибка при добавлении остатка.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+            var existingConsumption = (List<Inventory>)dgInventory.ItemsSource;
+            return existingConsumption.Any(p => p.Id == inventoryId);
         }
 
-        var newInventory = new Inventory
+        private async void btnLoadInventory_Click(object sender, RoutedEventArgs e)
         {
-            Id = inventoryId,
-            idDrag = Int32.Parse(txtIDDrug.Text),
-            idDepartment = Int32.Parse(txtIDDepartment.Text),
-            inventoryCheckDate = DateTime.Parse(txtInventoryCheckDate.Text),
-            remainingQuantityOfDrugs = txtRemainingQuantityOfDrugs.Text,
-            storageLocation = txtStorageLocation.Text
-        };
-
-        var json = JsonConvert.SerializeObject(newInventory);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = await client.PostAsync("inventory", content);
-        response.EnsureSuccessStatusCode();
-
-        MessageBox.Show("Остаток успешно добавлен", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-        btnLoadInventory_Click(sender, e);
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    }
-}
-
-private async void btnLoadInventory_Click(object sender, RoutedEventArgs e)
-{
-    try
-    {
-        var response = await client.GetStringAsync("inventory");
-        var record = JsonConvert.DeserializeObject<List<Inventory>>(response);
-        dgInventory.ItemsSource = record;
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    }
-}
-
-private async void btnUpdateInventory_Click(object sender, RoutedEventArgs e)
-{
-    try
-    {
-        int inventoryId;
-        if (!int.TryParse(txtIDInventory.Text, out inventoryId))
-        {
-            MessageBox.Show("Ошибка при обновлении записи", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+            try
+            {
+                var response = await client.GetStringAsync("inventory");
+                var record = JsonConvert.DeserializeObject<List<Inventory>>(response);
+                dgInventory.ItemsSource = record;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        var updatedInventory = new Inventory
+        private async void btnUpdateInventory_Click(object sender, RoutedEventArgs e)
         {
-            Id = inventoryId,
-            idDrag = Int32.Parse(txtIDDrug.Text),
-            idDepartment = Int32.Parse(txtIDDepartment.Text),
-            inventoryCheckDate = DateTime.Parse(txtInventoryCheckDate.Text),
-            remainingQuantityOfDrugs = txtRemainingQuantityOfDrugs.Text,
-            storageLocation = txtStorageLocation.Text
-        };
+            try
+            {
+                int inventoryId;
+                if (!int.TryParse(txtIDInventory.Text, out inventoryId))
+                {
+                    MessageBox.Show("Ошибка при обновлении записи", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
-        var json = JsonConvert.SerializeObject(updatedInventory);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-        var response = await client.PutAsync($"inventory/{inventoryId}", content);
-        response.EnsureSuccessStatusCode();
+                var updatedInventory = new Inventory
+                {
+                    Id = inventoryId,
+                    idDrag = Int32.Parse(txtIDDrug.Text),
+                    idDepartment = Int32.Parse(txtIDDepartment.Text),
+                    inventoryCheckDate = DateTime.Parse(txtInventoryCheckDate.Text),
+                    remainingQuantityOfDrugs = txtRemainingQuantityOfDrugs.Text,
+                    storageLocation = txtStorageLocation.Text
+                };
 
-        MessageBox.Show("Остаток успешно обновлен", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-        btnLoadInventory_Click(sender, e);
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    }
-}
+                var json = JsonConvert.SerializeObject(updatedInventory);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync($"inventory/{inventoryId}", content);
+                response.EnsureSuccessStatusCode();
+
+                MessageBox.Show("Остаток успешно обновлен", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                btnLoadInventory_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
         private async void MenuItemDeleteInventory_Click(object sender, RoutedEventArgs e)
         {
@@ -917,90 +937,90 @@ private async void btnUpdateInventory_Click(object sender, RoutedEventArgs e)
     }
 }
 
-private void txtFilterIDDrug_TextChanged(object sender, TextChangedEventArgs e)
-{
-    ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgInventory.ItemsSource);
-
-    if (collectionView != null)
-    {
-        collectionView.Filter = o =>
+        private void txtFilterIDDrug_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (o is Inventory inventory)
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgInventory.ItemsSource);
+
+            if (collectionView != null)
             {
-                return inventory.idDrag.ToString().StartsWith(txtFilterIDDrug.Text, StringComparison.OrdinalIgnoreCase);
+                collectionView.Filter = o =>
+                {
+                    if (o is Inventory inventory)
+                    {
+                        return inventory.idDrag.ToString().StartsWith(txtFilterIDDrug.Text, StringComparison.OrdinalIgnoreCase);
+                    }
+                    return false;
+                };
             }
-            return false;
-        };
-    }
-}
+        }
 
-private void txtFilterIDDepartment_TextChanged(object sender, TextChangedEventArgs e)
-{
-    ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgInventory.ItemsSource);
-
-    if (collectionView != null)
-    {
-        collectionView.Filter = o =>
+        private void txtFilterIDDepartment_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (o is Inventory inventory)
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgInventory.ItemsSource);
+
+            if (collectionView != null)
             {
-                return inventory.idDepartment.ToString().StartsWith(txtFilterIDDepartment.Text, StringComparison.OrdinalIgnoreCase);
+                collectionView.Filter = o =>
+                {
+                    if (o is Inventory inventory)
+                    {
+                        return inventory.idDepartment.ToString().StartsWith(txtFilterIDDepartment.Text, StringComparison.OrdinalIgnoreCase);
+                    }
+                    return false;
+                };
             }
-            return false;
-        };
-    }
-}
+        }
 
-private void txtFilterInventoryCheckDate_TextChanged(object sender, TextChangedEventArgs e)
-{
-    ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgInventory.ItemsSource);
-
-    if (collectionView != null)
-    {
-        collectionView.Filter = o =>
+        private void txtFilterInventoryCheckDate_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (o is Inventory inventory)
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgInventory.ItemsSource);
+
+            if (collectionView != null)
             {
-                return inventory.inventoryCheckDate.ToString().StartsWith(txtFilterInventoryCheckDate.Text, StringComparison.OrdinalIgnoreCase);
+                collectionView.Filter = o =>
+                {
+                    if (o is Inventory inventory)
+                    {
+                        return inventory.inventoryCheckDate.ToString().StartsWith(txtFilterInventoryCheckDate.Text, StringComparison.OrdinalIgnoreCase);
+                    }
+                    return false;
+                };
             }
-            return false;
-        };
-    }
-}
+        }
 
-private void txtFilterRemainingQuantityOfDrugs_TextChanged(object sender, TextChangedEventArgs e)
-{
-    ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgInventory.ItemsSource);
-
-    if (collectionView != null)
-    {
-        collectionView.Filter = o =>
+        private void txtFilterRemainingQuantityOfDrugs_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (o is Inventory record)
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgInventory.ItemsSource);
+
+            if (collectionView != null)
             {
-                return record.remainingQuantityOfDrugs.ToLower().StartsWith(txtFilterRemainingQuantityOfDrugs.Text, StringComparison.OrdinalIgnoreCase);
+                collectionView.Filter = o =>
+                {
+                    if (o is Inventory record)
+                    {
+                        return record.remainingQuantityOfDrugs.ToLower().StartsWith(txtFilterRemainingQuantityOfDrugs.Text, StringComparison.OrdinalIgnoreCase);
+                    }
+                    return false;
+                };
             }
-            return false;
-        };
-    }
-}
+        }
 
-private void txtFilterStorageLocation_TextChanged(object sender, TextChangedEventArgs e)
-{
-    ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgInventory.ItemsSource);
-
-    if (collectionView != null)
-    {
-        collectionView.Filter = o =>
+        private void txtFilterStorageLocation_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (o is Inventory record)
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(dgInventory.ItemsSource);
+
+            if (collectionView != null)
             {
-                return record.storageLocation.ToLower().StartsWith(txtFilterStorageLocation.Text, StringComparison.OrdinalIgnoreCase);
+                collectionView.Filter = o =>
+                {
+                    if (o is Inventory record)
+                    {
+                        return record.storageLocation.ToLower().StartsWith(txtFilterStorageLocation.Text, StringComparison.OrdinalIgnoreCase);
+                    }
+                    return false;
+                };
             }
-            return false;
-        };
-    }
-}
+        }
         #endregion
 
         #region SUPPLIERS
@@ -1030,6 +1050,24 @@ private void txtFilterStorageLocation_TextChanged(object sender, TextChangedEven
                     supplyCountry = txtSupplyCountry.Text
                 };
 
+                if (IsSuppliersIdExists(suppliersId))
+                {
+                    MessageBox.Show("Поставщик с таким же идентификатором уже существует", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (IsSuppliersPhoneNumberExists(txtContactInformation.Text))
+                {
+                    MessageBox.Show("Поставщик с таким же номером телефона уже существует", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (!ValidatePhoneNumber(txtContactInformation.Text))
+                {
+                    MessageBox.Show("Неверный формат номера телефона", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 var json = JsonConvert.SerializeObject(newSuppliers);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("suppliers", content);
@@ -1042,6 +1080,24 @@ private void txtFilterStorageLocation_TextChanged(object sender, TextChangedEven
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public bool ValidatePhoneNumber(string phoneNumber)
+        {
+            string phonePattern = @"^\+\d{1,3}\s?\(\d{2,3}\)\s?\d{3}-\d{2}-\d{2}$";
+
+            return Regex.IsMatch(phoneNumber, phonePattern);
+        }
+        private bool IsSuppliersPhoneNumberExists(string contactInfo)
+        {
+            var existingPatients = (List<Suppliers>)dgSuppliers.ItemsSource;
+            return existingPatients.Any(p => p.contactInfo == contactInfo);
+        }
+
+        private bool IsSuppliersIdExists(int suppliersId)
+        {
+            var existingConsumption = (List<Suppliers>)dgSuppliers.ItemsSource;
+            return existingConsumption.Any(p => p.Id == suppliersId);
         }
 
         private async void btnLoadSuppliers_Click(object sender, RoutedEventArgs e)
@@ -1224,6 +1280,12 @@ private void txtFilterStorageLocation_TextChanged(object sender, TextChangedEven
                     cost = txtCost.Text
                 };
 
+                if (IsSuppyIdExists(supplyId))
+                {
+                    MessageBox.Show("Поставка с таким же идентификатором уже существует", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 var json = JsonConvert.SerializeObject(newSupply);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("supply", content);
@@ -1236,6 +1298,12 @@ private void txtFilterStorageLocation_TextChanged(object sender, TextChangedEven
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private bool IsSuppyIdExists(int supplyId)
+        {
+            var existingConsumption = (List<Supply>)dgSupply.ItemsSource;
+            return existingConsumption.Any(p => p.Id == supplyId);
         }
 
         private async void btnLoadSupply_Click(object sender, RoutedEventArgs e)
@@ -1451,6 +1519,12 @@ private void txtFilterStorageLocation_TextChanged(object sender, TextChangedEven
                     accessRights = txtAccessRight.Text
                 };
 
+                if (IsUserIdExists(userId))
+                {
+                    MessageBox.Show("Пользователь с таким же идентификатором уже существует", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 var json = JsonConvert.SerializeObject(newUser);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("users", content);
@@ -1465,6 +1539,11 @@ private void txtFilterStorageLocation_TextChanged(object sender, TextChangedEven
             }
         }
 
+        private bool IsUserIdExists(int userId)
+        {
+            var existingConsumption = (List<Users>)dgUsers.ItemsSource;
+            return existingConsumption.Any(p => p.Id == userId);
+        }
         private async void btnLoadUser_Click(object sender, RoutedEventArgs e)
         {
             try
