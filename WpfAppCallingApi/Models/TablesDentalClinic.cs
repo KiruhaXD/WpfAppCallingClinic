@@ -5,157 +5,138 @@ using System.Security.Principal;
 
 namespace WpfAppCallingApi.Models
 {
-    [Table("Patients")]
-    public class Patients
+
+    [Table("Consumption")]
+    public class Consumption
     {
-        [Column("ID_Patient")]
+        [Column("ID_Consumption")]
         public int Id { get; set; }
 
-        [Column("Full_name")]
-        public string fullName { get; set; }
+        [Column("ID_Drug")]
+        public int idDrug { get; set; }
 
-        [Column("Data_birth")]
-        public DateTime dateBirth { get; set; }
+        [Column("ID_Department")]
+        public int idDepartment { get; set; }
 
-        [Column("Phone_number")]
-        public string phoneNumber { get; set; }
+        [Column("Use_date")]
+        public DateTime useDate { get; set; }
 
-        [Column("Email")]
-        public string email { get; set; }
+        [Column("Quantity_used")]
+        public string quantityUsed { get; set; }
 
-        [Column("Address")]
-        public string address { get; set; }
+        [Column("ID_User")]
+        public int idUser { get; set; }
     }
 
-    [Table("Specialization_doctor")]
-    public class Specialization_doctor
+    [Table("Departments")]
+    public class Departments
     {
-        [Column("ID_Specialty")]
+        [Column("ID_Department")]
         public int Id { get; set; }
 
-        [Column("Name_specialty")]
-        public string Name_specialty { get; set; }
+        [Column("Name")]
+        public string name { get; set; }
+
+        [Column("Responsible_employee")]
+        public string responsibleEmployee { get; set; }
     }
 
-    [Table("Doctors")]
-    public class Doctors
+    [Table("Drugs")]
+    public class Drugs
     {
-        [Column("ID_Doctor")]
+        [Column("ID_Drug")]
         public int Id { get; set; }
 
-        [Column("Full_name")]
-        public string fullName { get; set; }
+        [Column("Name")]
+        public string name { get; set; }
 
-        [Column("ID_Specialty")]
-        public int idSpecialty { get; set; }
+        [Column("Classification")]
+        public string classification { get; set; }
+
+        [Column("Dosage")]
+        public string dosage { get; set; }
+
+        [Column("Manufacturer")]
+        public string manufacturer { get; set; }
+
+        [Column("Country_of_origin")]
+        public string countryOfOrigin { get; set; }
+    }
+
+    [Table("Inventory")]
+    public class Inventory
+    {
+        [Column("ID_Inventory")]
+        public int Id { get; set; }
+
+        [Column("ID_Drug")]
+        public int idDrag { get; set; }
+
+        [Column("ID_Department")]
+        public int idDepartment { get; set; }
+
+        [Column("Inventory_check_date")]
+        public DateTime inventoryCheckDate { get; set; }
+
+        [Column("Remaining_quantity_of_drugs")]
+        public string remainingQuantityOfDrugs { get; set; }
+
+        [Column("Storage_location")]
+        public string storageLocation { get; set; }
+    }
+
+    [Table("Suppliers")]
+    public class Suppliers
+    {
+        [Column("ID_Supplier")]
+        public int Id { get; set; }
+
+        [Column("Company_name")]
+        public string companyName { get; set; }
 
         [Column("Contact_info")]
         public string contactInfo { get; set; }
 
-        [Column("Medical_experience")]
-        public string medicalExperience { get; set; }
-
-        [Column("Work_schedule")]
-        public string workSchedule { get; set; }
+        [Column("Supply_country")]
+        public string supplyCountry { get; set; }
     }
 
-    [Table("Records_on_receiving")]
-    public class Records_on_receiving
+    [Table("Supply")]
+    public class Supply
     {
-        [Column("ID_Record")]
+        [Column("ID_Supply")]
         public int Id { get; set; }
 
-        [Column("ID_Destination")]
-        public int idDestination { get; set; }
+        [Column("ID_Drug")]
+        public int idDrug { get; set; }
 
-        [Column("ID_Services")]
-        public int idServices { get; set; }
+        [Column("ID_Supplier")]
+        public int idSupplier { get; set; }
 
-        [Column("Data_and_time_record")]
-        public DateTime dataAndTimeRecord { get; set; }
+        [Column("Supply_date")]
+        public DateTime supplyDate { get; set; }
 
-        [Column("ID_Doctor")]
-        public int idDoctor { get; set; }
+        [Column("Quantity")]
+        public string quantity { get; set; }
 
-        [Column("ID_Patient")]
-        public int idPatient { get; set; }
-
-        [Column("ID_Receiving_type")]
-        public int IdReceivingType { get; set; }
-    }
-
-    [Table("Destinations")]
-    public class Destination
-    {
-        [Column("ID_Destination")]
-        public int Id { get; set; }
-
-        [Column("Data_destination")]
-        public DateTime dataDestination { get; set; }
-
-        [Column("Description_destination")]
-        public string descriptionDestination { get; set; }
-    }
-
-    [Table("Services")]
-    public class Services
-    {
-        [Column("ID_Services")]
-        public int Id { get; set; }
-
-        [Column("Name_service")]
-        public string nameService { get; set; }
-
-        [Column("Description_service")]
-        public string descriptionService { get; set; }
-
-        [Column("Price")]
-        public decimal price { get; set; }
+        [Column("Cost")]
+        public string cost { get; set; }
     }
 
 
-    [Table("List_of_diseases")]
-    public class List_of_diseases
+    [Table("Users")]
+    public class Users
     {
-        [Column("ID_List_of_diseases")]
+        [Column("ID_User")]
         public int Id { get; set; }
 
-        [Column("Diseases")]
-        public string diseases { get; set; }
+        [Column("Name")]
+        public string fullName { get; set; }
 
-        [Column("Treatment")]
-        public string treatment { get; set; }
-    }
+        [Column("Position")]
+        public string position { get; set; }
 
-    [Table("Patient_card")]
-    public class Patient_card
-    {
-        [Column("ID_Patient_card")]
-        public int Id { get; set; }
-
-        [Column("ID_Patient")]
-        public int idPatient { get; set; }
-
-        [Column("ID_List_of_diseases")]
-        public int idListOfDiseases { get; set; }
-
-        [Column("Data_record")]
-        public DateTime dataRecord { get; set; }
-
-        [Column("Description_patient")]
-        public string descriptionPatient { get; set; }
-
-        [Column("Procedures_and_treatments")]
-        public string proceduresAndTreatments { get; set; }
-    }
-
-    [Table("Receiving_type")]
-    public class Receiving_type
-    {
-        [Column("ID_Receiving_type")]
-        public int Id { get; set; }
-
-        [Column("Name_receiving")]
-        public string nameReceiving { get; set; }
+        [Column("Access_rights")]
+        public string accessRights { get; set; }
     }
 }

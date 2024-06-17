@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppCallingApi"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1277" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
-        AllowsTransparency="False" Background="Transparent">
+        Title="MainWindow" Height="1080" Width="1372" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+        AllowsTransparency="False" Background="#FFEAC28B">
 
     <Window.Resources>
+
         <Style x:Key="AddButtonStyle" TargetType="Button">
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="#FFEAC28B"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -19,7 +20,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="5" Background="LightBlue">
+                        <Border CornerRadius="5" Background="#FF48416D">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -28,7 +29,7 @@
         </Style>
 
         <Style x:Key="LoadButtonStyle" TargetType="Button">
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="#FFEAC28B"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -37,7 +38,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="5" Background="LightBlue">
+                        <Border CornerRadius="5" Background="#FF48416D">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -46,7 +47,7 @@
         </Style>
 
         <Style x:Key="UpdateButtonStyle" TargetType="Button">
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="#FFEAC28B"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -55,7 +56,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="5" Background="LightBlue">
+                        <Border CornerRadius="5" Background="#FF48416D">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -64,7 +65,7 @@
         </Style>
 
         <Style x:Key="DeleteButtonStyle" TargetType="Button">
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="#FFEAC28B"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -73,7 +74,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="5" Background="LightBlue">
+                        <Border CornerRadius="5" Background="#FFD80619">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -82,443 +83,426 @@
         </Style>
 
     </Window.Resources>
-    <Grid Margin="-33,0,0,-42">
-        <TabControl  Background="White" Margin="48,0,10,0" SelectionChanged="TabControl_SelectionChanged_1">
-            <TabItem Header="Пациенты" FontWeight="Bold">
-                <Grid Height="719" Margin="57,0,18,0">
-                    <TextBlock HorizontalAlignment="Left" Margin="582,23,0,0" TextWrapping="Wrap" Text="Patient ID:" VerticalAlignment="Top"/>
-                    <Label x:Name="lblName" Content="Full_name: " HorizontalAlignment="Left" Margin="577,39,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="lblDateBirth" Content="Date_birth: " HorizontalAlignment="Left" Margin="577,62,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="lblPhoneNumber" Content="Phone_number:" HorizontalAlignment="Left" Margin="556,85,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="lblEmail" Content="Email: " HorizontalAlignment="Left" Margin="599,108,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="lblAddress" Content="Address: " HorizontalAlignment="Left" Margin="592,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.575,-0.114"/>
-                    <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="655,43,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
-                    <TextBox x:Name="txtDateBirth" HorizontalAlignment="Left" Margin="655,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
-                    <TextBox x:Name="txtPhoneNumber" HorizontalAlignment="Left" Margin="655,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.223,-0.443"/>
-                    <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="655,112,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
-                    <TextBox x:Name="txtAddress" HorizontalAlignment="Left" Margin="655,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
-                    <TextBox x:Name="txtPatientId" HorizontalAlignment="Left" Margin="655,20,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
+    <Grid Margin="0,0,0,-42">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF88ADF5"/>
+                <GradientStop Color="#FF0800FD" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
+            <TabControl.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF86AAF5"/>
+                    <GradientStop Color="#FFC5ACF3" Offset="1"/>
+                </LinearGradientBrush>
+            </TabControl.BorderBrush>
+            <TabControl.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF86ABF5"/>
+                    <GradientStop Color="#FFC5ACF3" Offset="1"/>
+                </LinearGradientBrush>
+            </TabControl.Background>
 
-                    <Label Content="Фильтрация:" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="84"/>
-                    <TextBox x:Name="txtFilterFullName" TextChanged="txtFilterFullName_TextChanged" HorizontalAlignment="Left" Margin="10,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="111"/>
-                    <TextBox x:Name="txtFilterDateBirth" TextChanged="txtFilterDateBirth_TextChanged" HorizontalAlignment="Left" Margin="126,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="111"/>
-                    <TextBox x:Name="txtFilterPhoneNumber" TextChanged="txtFilterPhoneNumber_TextChanged" HorizontalAlignment="Left" Margin="244,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="111"/>
-                    <TextBox x:Name="txtFilterEmail" TextChanged="txtFilterEmail_TextChanged" HorizontalAlignment="Left" Margin="360,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="111"/>
-                    <TextBox x:Name="txtFilterAddress" TextChanged="txtFilterAddress_TextChanged" HorizontalAlignment="Left" Margin="476,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="111"/>
-                    <DataGrid x:Name="dgPatient" Margin="0,160,10,40"
+            <TabItem Header="Потребление" FontWeight="Bold" Background="#FF332E51" BorderBrush="#FF332E51" Foreground="White" Margin="20 0 20 20" >
+                <Grid Height="527" Margin="38,0,73,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock  Text="ID Потребления:" HorizontalAlignment="Left" Margin="754,-246,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="105" Foreground="Black"/>
+                    <Label x:Name="lblIdDrug" Content="Идентификатора препарата: " HorizontalAlignment="Left" Margin="678,-216,0,0" VerticalAlignment="Top" Height="26" Width="181"/>
+                    <Label x:Name="lblIdDepartment" Content="Идентификатор подразделения: " HorizontalAlignment="Left" Margin="656,-183,0,0" VerticalAlignment="Top" Height="25" Width="205"/>
+                    <Label x:Name="lblUseDate" Content="Дата использования:" HorizontalAlignment="Left" Margin="722,-146,0,0" VerticalAlignment="Top" Height="22" Width="137"/>
+                    <Label x:Name="lblQuantityUsed" Content="Количество использованного: " HorizontalAlignment="Left" Margin="673,-114,0,0" VerticalAlignment="Top" Height="26" Width="191"/>
+                    <Label x:Name="lblIdUser" Content="Идентификатор пользователя: " HorizontalAlignment="Left" Margin="670,-84,0,0" VerticalAlignment="Top" Height="23" Width="191"/>
+
+                    <TextBox x:Name="txtIdDrug" HorizontalAlignment="Left" Margin="864,-215,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="26" Background="White" Foreground="#FF0C0707"/>
+                    <TextBox x:Name="txtIdDepartment" HorizontalAlignment="Left" Margin="864,-184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="26" Background="White" Foreground="#FF0C0707"/>
+                    <TextBox x:Name="txtUseDate" HorizontalAlignment="Left" Margin="864,-148,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.223,-0.443" Height="25" Background="White" Foreground="#FF0C0707"/>
+                    <TextBox x:Name="txtQuantityUsed" HorizontalAlignment="Left" Margin="864,-114,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="26" Background="White" Foreground="#FF0C0707"/>
+                    <TextBox x:Name="txtIdUser" HorizontalAlignment="Left" Margin="864,-82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="26" Background="#FFFBFBFB" Foreground="#FF0C0707"/>
+
+                    <TextBox x:Name="txtConsumptionId" HorizontalAlignment="Left" Margin="864,-249,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="26" Background="White" Foreground="#FF040404" TextChanged="txtConsumptionId_TextChanged"/>
+                    <TextBox x:Name="txtFilterIdDrug" TextChanged="txtFilterIdDrug_TextChanged" HorizontalAlignment="Left" Margin="97,-187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="110" Height="26" Background="White" Foreground="#FF0C0707"/>
+                    <TextBox x:Name="txtFilterIdDepartment" TextChanged="txtFilterIdDepartment_TextChanged" HorizontalAlignment="Left" Margin="97,-146,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="111" Height="26" Background="White" Foreground="#FF0C0707"/>
+                    <TextBox x:Name="txtFilterUseDate" TextChanged="txtFilterUseDate_TextChanged" HorizontalAlignment="Left" Margin="366,-187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.468,1.812" Height="26" Background="White" Foreground="#FF0C0707"/>
+                    <TextBox x:Name="txtFilterQuantityUsed" TextChanged="txtFilterQuantityUsed_TextChanged" HorizontalAlignment="Left" Margin="366,-146,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="111" Height="26" Background="White" Foreground="#FF0C0707"/>
+                    <TextBox x:Name="txtFilterIdUser" TextChanged="txtFilterIdUser_TextChanged" HorizontalAlignment="Left" Margin="213,-96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="110" Height="29" Background="White" Foreground="#FF0C0707"/>
+                    <DataGrid x:Name="dgConsumption" Margin="22,10,10,10"
           xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
           CanUserAddRows="True"
           ItemsSource="{Binding}"
           EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected"
-          AutoGenerateColumns="False" SelectionChanged="dgPatient_SelectionChanged">
+          AutoGenerateColumns="False" SelectionChanged="dgConsumption_SelectionChanged" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID Пациента" Binding="{Binding Path=Id}"/>
-                            <DataGridTextColumn Header="ФИО" Binding="{Binding Path=fullName}"/>
-                            <DataGridTextColumn Header="Дата рождения" Binding="{Binding Path=dateBirth}"/>
-                            <DataGridTextColumn Header="Номер телефона" Binding="{Binding Path=phoneNumber}"/>
-                            <DataGridTextColumn Header="Почта" Binding="{Binding Path=email}"/>
-                            <DataGridTextColumn Header="Адрес" Binding="{Binding Path=address}"/>
+                            <DataGridTextColumn Header="ID Потребления" Binding="{Binding Path=Id}"/>
+                            <DataGridTextColumn Header="ID Препарата" Binding="{Binding Path=idDrug}"/>
+                            <DataGridTextColumn Header="ID подразделения" Binding="{Binding Path=idDepartment}"/>
+                            <DataGridTextColumn Header="Дата использования" Binding="{Binding Path=useDate}"/>
+                            <DataGridTextColumn Header="Количество использованного" Binding="{Binding Path=quantityUsed}"/>
+                            <DataGridTextColumn Header="ID Пользователя" Binding="{Binding Path=idUser}"/>
                         </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить" Click="MenuItemDelete_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
                     </DataGrid>
 
 
-                    <Label x:Name="lblMessage" Content="" HorizontalAlignment="Left" Margin="157,242,0,0" VerticalAlignment="Top" Width="119"/>
-                    <TextBox x:Name="txtPatientIdToDelete" HorizontalAlignment="Left" Margin="168,691,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <TextBlock Text="ID Пациента для удаления: " HorizontalAlignment="Left" Margin="0,691,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
-                    <Button Style="{StaticResource DeleteButtonStyle}" Content="Удалить пациента" Click="btnDeletePatient_Click" HorizontalAlignment="Left" Margin="293,685,0,0" VerticalAlignment="Top" Width="122" Height="30"/>
-                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить пациента" Click="btnAddPatient_Click" HorizontalAlignment="Left" Margin="807,16,0,0" VerticalAlignment="Top" Width="122" FontWeight="Bold" Height="30"/>
-                    <Button Style="{StaticResource LoadButtonStyle}" Content="Обновить пациента" Click="btnUpdatePatietn_Click" HorizontalAlignment="Left" Margin="807,121,0,0" VerticalAlignment="Top" Width="122" Height="30"/>
-                    <Button Style="{StaticResource UpdateButtonStyle}" x:Name="btnLoadPatients" Content="Загрузить пациентов" Click="btnLoadPatients_Click" HorizontalAlignment="Left" Margin="807,68,0,0" VerticalAlignment="Top" Width="122" Height="30"/>
-                    <TextBox x:Name="txtSearchInGrid" TextChanged="txtSearchInGrid_TextChanged" HorizontalAlignment="Left" Margin="52,49,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
-                    <Label Content="ФИО:" HorizontalAlignment="Left" Margin="37,109,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Дата рождения:" HorizontalAlignment="Left" Margin="135,108,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Номер телефона:" HorizontalAlignment="Left" Margin="247,108,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Почта:" HorizontalAlignment="Left" Margin="386,108,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451"/>
-                    <Label Content="Адрес:" HorizontalAlignment="Left" Margin="505,109,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Поиск:" HorizontalAlignment="Left" Margin="0,44,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lblMessage" Content="" HorizontalAlignment="Left" Margin="337,242,0,0" VerticalAlignment="Top" Width="119" Height="26"/>
+                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить потребление" Click="btnAddConsumption_Click" HorizontalAlignment="Left" Margin="1018,-228,0,0" VerticalAlignment="Top" Width="144" FontWeight="Bold" Height="29" Foreground="White"/>
+                    <Button Style="{StaticResource LoadButtonStyle}" Content="Обновить потребление" Click="btnUpdateConsumption_Click" HorizontalAlignment="Left" Margin="1018,-125,0,0" VerticalAlignment="Top" Width="144" Height="31" Foreground="White"/>
+                    <Button Style="{StaticResource UpdateButtonStyle}" x:Name="btnLoadConsumption" Content="Загрузить потребление" Click="btnLoadConsumption_Click" HorizontalAlignment="Left" Margin="1018,-179,0,0" VerticalAlignment="Top" Width="144" Height="32" Foreground="White"/>
+                    <TextBox x:Name="txtSearchInGrid" TextChanged="txtSearchInGrid_TextChanged" HorizontalAlignment="Left" Margin="36,-260,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="336" Height="26" Background="White" Foreground="#FF0C0707"/>
+                    <Label Content="ID Препарата:" HorizontalAlignment="Left" Margin="4,-187,0,0" VerticalAlignment="Top" Height="33" Width="88"/>
+                    <Label Content="ID подразделения:" HorizontalAlignment="Left" Margin="-24,-146,0,0" VerticalAlignment="Top" Height="26" Width="120"/>
+                    <Label Content="Дата использования:" HorizontalAlignment="Left" Margin="229,-187,0,0" VerticalAlignment="Top" Height="30" Width="134"/>
+                    <Label Content="Количество &#xD;&#xA;использованного:" HorizontalAlignment="Left" Margin="238,-157,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451" Height="47" Width="116"/>
+                    <Label Content="ID Пользователя:" HorizontalAlignment="Left" Margin="97,-96,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451" Height="27" Width="111"/>
+                    <Label Content="Поиск:" HorizontalAlignment="Left" Margin="-14,-263,0,0" VerticalAlignment="Top" Height="31" Width="50"/>
 
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Врачи" Margin="-1,0,-6,0" FontWeight="Bold">
-                <Grid Height="980" Margin="48,0,6,0">
+            <TabItem Header="Подразделения" Margin="20 0 20 20" FontWeight="Bold" BorderBrush="#FF332E51" Foreground="White" Background="#FF332E51">
+                <Grid Margin="48,-6,6,29" Width="1343">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="27*"/>
                         <ColumnDefinition Width="103*"/>
                         <ColumnDefinition Width="664*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Doctor ID:" HorizontalAlignment="Left" Margin="467,152,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.Column="2"/>
-                    <Label x:Name="lblNameDoctor" Content="ФИО:" HorizontalAlignment="Left" Margin="496,169,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                    <Label x:Name="lblIDSpecialty" Content="ID Специальности:" HorizontalAlignment="Left" Margin="418,191,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                    <Label x:Name="lblContactInfo" Content="Контактная информация:" HorizontalAlignment="Left" Margin="374,213,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                    <Label x:Name="lblMedicalExperience" Content="Медицинский стаж:" HorizontalAlignment="Left" Margin="398,237,0,0" VerticalAlignment="Top" Grid.Column="2" Height="29" Width="136"/>
-                    <Label x:Name="lblWorkSchedule" Content="График работы:" HorizontalAlignment="Left" Margin="431,256,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.575,-0.114" Grid.Column="2"/>
-                    <TextBox x:Name="txtNameDoctor" HorizontalAlignment="Left" Margin="540,172,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2"/>
-                    <TextBox x:Name="txtIDSpecialty" HorizontalAlignment="Left" Margin="540,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2"/>
-                    <TextBox x:Name="txtContactInfo" HorizontalAlignment="Left" Margin="540,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.223,-0.443" Grid.Column="2"/>
-                    <TextBox x:Name="txtMedicalExperience" HorizontalAlignment="Left" Margin="540,241,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2"/>
-                    <TextBox x:Name="txtWorkSchedule" HorizontalAlignment="Left" Margin="540,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2"/>
-                    <TextBox x:Name="txtDoctorId" HorizontalAlignment="Left" Margin="540,149,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2"/>
-                    <Label Content="Фильтрация:" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="txtFilterFullNameDoctor" TextChanged="txtFilterFullNameDoctor_TextChanged" HorizontalAlignment="Left" Margin="10,272,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="txtFilterIDSpecialty" TextChanged="txtFilterIDSpecialty_TextChanged" HorizontalAlignment="Left" Margin="60,272,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1"/>
-                    <TextBox x:Name="txtFilterContactInfo" TextChanged="txtFilterContactInfo_TextChanged" HorizontalAlignment="Left" Margin="149,272,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="txtFilterMedicalExperience" TextChanged="txtFilterMedicalExperience_TextChanged" HorizontalAlignment="Left" Margin="86,272,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="2"/>
-                    <TextBox x:Name="txtFilterWorkSchedule" TextChanged="txtFilterWorkSchedule_TextChanged" HorizontalAlignment="Left" Margin="175,272,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="2"/>
-                    <DataGrid x:Name="dgDoctor" Margin="10,300,10,73"
+                    <TextBlock Text="ID Подразделения :" HorizontalAlignment="Left" Margin="421,65,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.Column="2" Foreground="Black"/>
+                    <Label x:Name="lblName" Content="Наименование:" HorizontalAlignment="Left" Margin="436,100,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                    <Label x:Name="lblResponsibleEmployee" Content="Ответственный сотрудник:" HorizontalAlignment="Left" Margin="372,143,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+
+                    <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="541,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="26" Grid.Column="2" Background="White" Foreground="Black"/>
+                    <TextBox x:Name="txtResponsibleEmployee" HorizontalAlignment="Left" Margin="541,143,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="26" Grid.Column="2" Background="White" Foreground="Black"/>
+                    <TextBox x:Name="txtDepartmentId" HorizontalAlignment="Left" Margin="541,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="26" Grid.Column="2" Background="White" Foreground="Black"/>
+                    <TextBox x:Name="txtFilterName" TextChanged="txtFilterName_TextChanged" HorizontalAlignment="Left" Margin="79,185,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Height="26" Grid.Column="2" Background="White" Foreground="Black"/>
+                    <TextBox x:Name="txtFilterResponsibleEmployee" TextChanged="txtFilterResponsibleEmployee_TextChanged" HorizontalAlignment="Left" Margin="79,229,0,0" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="2" Background="White" Foreground="Black"/>
+                    <DataGrid x:Name="dgDepartment" Margin="10,300,75,73"
 xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
 CanUserAddRows="True"
 ItemsSource="{Binding}"
 EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected"
-AutoGenerateColumns="False" SelectionChanged="dgPatient_SelectionChanged" Grid.ColumnSpan="3">
+AutoGenerateColumns="False" SelectionChanged="dgConsumption_SelectionChanged" Grid.ColumnSpan="3" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID Доктора" Binding="{Binding Path=Id}"/>
-                            <DataGridTextColumn Header="ФИО" Binding="{Binding Path=fullName}"/>
-                            <DataGridTextColumn Header="ID Специальности" Binding="{Binding Path=idSpecialty}"/>
-                            <DataGridTextColumn Header="Контактная информация" Binding="{Binding Path=contactInfo}"/>
-                            <DataGridTextColumn Header="Медицинский стаж" Binding="{Binding Path=medicalExperience}"/>
-                            <DataGridTextColumn Header="Рабочий график" Binding="{Binding Path=workSchedule}"/>
+                            <DataGridTextColumn Header="ID Подразделения" Binding="{Binding Path=Id}"/>
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding Path=name}"/>
+                            <DataGridTextColumn Header="Ответственный сотрудник" Binding="{Binding Path=responsibleEmployee}"/>
                         </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить" Click="MenuItemDeleteDepartment_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
                     </DataGrid>
 
 
-                    <Label x:Name="lblMessageDoctor" Content="" HorizontalAlignment="Left" Margin="27,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="2"/>
-                    <TextBox x:Name="txtDoctorIdToDelete" HorizontalAlignment="Left" Margin="131,912,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.ColumnSpan="2"/>
-                    <TextBlock Text="ID Доктора дял удаления: " HorizontalAlignment="Left" Margin="10,912,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <Button Style="{StaticResource DeleteButtonStyle}" Content="Удалить доктора" Click="btnDeleteDoctor_Click" HorizontalAlignment="Left" Margin="102,912,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="2"/>
-                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить доктора" Click="btnAddDoctors_Click" HorizontalAlignment="Left" Margin="688,143,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="2"/>
-                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить доктора" Click="btnUpdateDoctors_Click" HorizontalAlignment="Left" Margin="688,252,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="2"/>
-                    <Button Style="{StaticResource AddButtonStyle}" Content="Загрузить докторов" Click="btnLoadDoctors_Click" HorizontalAlignment="Left" Margin="688,201,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="2"/>
-                    <TextBox x:Name="txtSearchInGridDoctors" TextChanged="txtSearchInGridDoctors_TextChanged" HorizontalAlignment="Left" Margin="24,173,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="235" Grid.Column="1" Grid.ColumnSpan="2"/>
-                    <Label Content="ФИО:" HorizontalAlignment="Left" Margin="32,241,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <Label Content="ID Специ-&#xD;&#xA;альности:" HorizontalAlignment="Left" Margin="64,225,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label Content="Контактная &#xD;&#xA;информация:" HorizontalAlignment="Left" Margin="148,224,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
-                    <Label Content="Медицинский &#xD;&#xA;стаж:" HorizontalAlignment="Left" Margin="87,226,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451" Grid.Column="2" Width="96"/>
-                    <Label Content="Рабочий &#xD;&#xA;график:" HorizontalAlignment="Left" Margin="186,227,0,0" VerticalAlignment="Top" Grid.Column="2" Width="90" Height="40"/>
-                    <Label Content="Поиск:" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label x:Name="lblMessageDepartment" Content="" HorizontalAlignment="Left" Margin="27,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="2" Foreground="Black"/>
+                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить подразделение" Click="btnAddDepartments_Click" HorizontalAlignment="Left" Margin="737,54,0,0" VerticalAlignment="Top" Width="157" Height="30" Grid.Column="2" Foreground="White"/>
+                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить подразделение" Click="btnUpdateDepartments_Click" HorizontalAlignment="Left" Margin="737,163,0,0" VerticalAlignment="Top" Width="157" Height="30" Grid.Column="2" Foreground="White"/>
+                    <Button Style="{StaticResource AddButtonStyle}" Content="Загрузить подразделение" Click="btnLoadDepartments_Click" HorizontalAlignment="Left" Margin="737,112,0,0" VerticalAlignment="Top" Width="157" Height="30" Grid.Column="2" Foreground="White"/>
+                    <TextBox x:Name="txtSearchInGridDepartments" TextChanged="txtSearchInGridDepartments_TextChanged" HorizontalAlignment="Left" Margin="8,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="336" Height="26" Grid.Column="1" Grid.ColumnSpan="2" Background="White" Foreground="Black"/>
+                    <Label Content="Наименование:" HorizontalAlignment="Left" Margin="126,181,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <Label Content="Ответственный сотрудник:" HorizontalAlignment="Left" Margin="64,225,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2" Width="177"/>
+                    <Label Content="Поиск:" HorizontalAlignment="Center" VerticalAlignment="Top" Width="51"/>
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Назначения" Margin="5,0,-11,0" FontWeight="Bold">
-                <Grid Height="1088" Margin="42,0,24,0">
+            <TabItem Header="Препараты" Margin="20 0 20 20" FontWeight="Bold" Background="#FF332E51" BorderBrush="#FF332E51" Foreground="#FFE6E1E1">
+                <Grid Margin="42,0,24,2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="27*"/>
                         <ColumnDefinition Width="767*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Destination ID:" HorizontalAlignment="Left" Margin="537,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label x:Name="lblDataDestination" Content="Дата назначения:" HorizontalAlignment="Left" Margin="514,188,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label x:Name="lblDescriptionDestination" Content="Описание назначения:" HorizontalAlignment="Left" Margin="485,209,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBox x:Name="txtDataDestination" HorizontalAlignment="Left" Margin="628,191,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1"/>
-                    <TextBox x:Name="txtDescriptionDestination" HorizontalAlignment="Left" Margin="628,214,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1"/>
-                    <TextBox x:Name="txtDestinationId" HorizontalAlignment="Left" Margin="628,168,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1"/>
-                    <Label Content="Фильтрация:" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="txtFilterDataDestination" TextChanged="txtFilterDataDestination_TextChanged" HorizontalAlignment="Left" Margin="10,283,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="txtFilterDescriptionDestination" TextChanged="txtFilterDescriptionDestination_TextChanged" HorizontalAlignment="Left" Margin="97,283,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1"/>
-                    <DataGrid x:Name="dgDestination" Margin="10,308,0,176"
+                    <TextBlock Text="ID Препарата:" HorizontalAlignment="Left" Margin="549,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Foreground="#FF191919"/>
+                    <Label x:Name="lblNameDrug" Content="Наименование:" HorizontalAlignment="Left" Margin="534,60,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label x:Name="lblClassification" Content="Классификация:" HorizontalAlignment="Left" Margin="529,97,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label x:Name="lblDosage" Content="Дозировка:" HorizontalAlignment="Left" Margin="555,131,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label x:Name="lblManufacturer" Content="Производитель:" HorizontalAlignment="Left" Margin="529,169,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label x:Name="lblCountryOfOrigin" Content="Страна происхождения:" HorizontalAlignment="Left" Margin="483,207,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="txtNameDrug" HorizontalAlignment="Left" Margin="638,59,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Background="White" Foreground="#FF060404"/>
+                    <TextBox x:Name="txtClassification" HorizontalAlignment="Left" Margin="638,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Background="White" Foreground="#FF060404"/>
+                    <TextBox x:Name="txtDosage" HorizontalAlignment="Left" Margin="638,133,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Background="White" Foreground="#FF080707"/>
+                    <TextBox x:Name="txtManufacturer" HorizontalAlignment="Left" Margin="638,170,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Background="White" Foreground="#FF0A0808"/>
+                    <TextBox x:Name="txtCountryOfOrigin" HorizontalAlignment="Left" Margin="638,207,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Background="White" Foreground="#FF0A0808"/>
+                    <TextBox x:Name="txtDrugId" HorizontalAlignment="Left" Margin="638,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Background="White" Foreground="#FF060404"/>
+                    <TextBox x:Name="txtFilterNameDrug" TextChanged="txtFilterNameDrug_TextChanged" HorizontalAlignment="Left" Margin="67,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Background="White" Foreground="#FF0E0909"/>
+                    <TextBox x:Name="txtFilterClassification" TextChanged="txtFilterClassification_TextChanged" HorizontalAlignment="Left" Margin="67,211,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Background="White" Foreground="#FF0E0909"/>
+                    <TextBox x:Name="txtFilterDosage" TextChanged="txtFilterDosage_TextChanged" HorizontalAlignment="Left" Margin="269,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Background="White" Foreground="#FF0C0707"/>
+                    <TextBox x:Name="txtFilterManufacturer" TextChanged="txtFilterManufacturer_TextChanged" HorizontalAlignment="Left" Margin="269,211,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Background="White" Foreground="#FF0C0707"/>
+                    <TextBox x:Name="txtFilterCountryOfOrigin" TextChanged="txtFilterCountryOfOrigin_TextChanged" HorizontalAlignment="Left" Margin="215,255,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Background="White" Foreground="#FF0C0707"/>
+                    <DataGrid x:Name="dgDrugs" Margin="10,308,92,176"
 xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
 CanUserAddRows="True"
 ItemsSource="{Binding}"
 EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected"
-AutoGenerateColumns="False" SelectionChanged="dgPatient_SelectionChanged" Grid.ColumnSpan="2">
+AutoGenerateColumns="False" SelectionChanged="dgConsumption_SelectionChanged" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID Назначения" Binding="{Binding Path=Id}"/>
-                            <DataGridTextColumn Header="Дата назначения" Binding="{Binding Path=dataDestination}"/>
-                            <DataGridTextColumn Header="Описание назначения" Binding="{Binding Path=descriptionDestination}"/>
+                            <DataGridTextColumn Header="ID Препарата" Binding="{Binding Path=Id}"/>
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding Path=name}"/>
+                            <DataGridTextColumn Header="Классификация" Binding="{Binding Path=classification}"/>
+                            <DataGridTextColumn Header="Дозировка" Binding="{Binding Path=dosage}"/>
+                            <DataGridTextColumn Header="Производитель" Binding="{Binding Path=manufacturer}"/>
+                            <DataGridTextColumn Header="Страна происхождения" Binding="{Binding Path=countryOfOrigin}"/>
                         </DataGrid.Columns>
+
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить" Click="MenuItemDeleteDrug_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
                     </DataGrid>
 
 
-                    <Label x:Name="lblMessageDestination" Content="" HorizontalAlignment="Left" Margin="130,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="1"/>
-                    <TextBox x:Name="txtDestinationIdToDelete" HorizontalAlignment="Left" Margin="150,923,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBlock Text="ID Назначения для удаления: " HorizontalAlignment="Left" Margin="17,925,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <Button Style="{StaticResource DeleteButtonStyle}" Content="Удалить назначение" Click="btnDeleteDestination_Click" HorizontalAlignment="Left" Margin="275,922,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1"/>
-                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить назначение" Click="btnAddDestination_Click" HorizontalAlignment="Left" Margin="781,160,0,0" VerticalAlignment="Top" Width="137" Height="30" Grid.Column="1"/>
-                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить назначение" Click="btnUpdateDestination_Click" HorizontalAlignment="Left" Margin="781,253,0,0" VerticalAlignment="Top" Width="137" Height="30" Grid.Column="1"/>
-                    <Button Style="{StaticResource LoadButtonStyle}" Content="Загрузить назначения" Click="btnLoadDestination_Click" HorizontalAlignment="Left" Margin="781,206,0,0" VerticalAlignment="Top" Width="137" Height="30" Grid.Column="1"/>
-                    <TextBox x:Name="txtSearchInGridDestination" TextChanged="txtSearchInGridDestination_TextChanged" HorizontalAlignment="Left" Margin="21,208,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="193" Grid.Column="1"/>
-                    <Label Content="Дата назначения:" HorizontalAlignment="Left" Margin="0,257,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <Label Content="Описания назначения:" HorizontalAlignment="Left" Margin="79,257,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label Content="Поиск:" HorizontalAlignment="Left" Margin="6,201,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label x:Name="lblMessageDrugs" Content="" HorizontalAlignment="Left" Margin="130,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="1"/>
+                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить препарат" Click="btnAddDrug_Click" HorizontalAlignment="Left" Margin="822,35,0,0" VerticalAlignment="Top" Width="137" Height="30" Grid.Column="1" Foreground="White"/>
+                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить препарат" Click="btnUpdateDrug_Click" HorizontalAlignment="Left" Margin="822,128,0,0" VerticalAlignment="Top" Width="137" Height="30" Grid.Column="1" Foreground="White"/>
+                    <Button Style="{StaticResource LoadButtonStyle}" Content="Загрузить препараты" Click="btnLoadDrug_Click" HorizontalAlignment="Left" Margin="822,81,0,0" VerticalAlignment="Top" Width="137" Height="30" Grid.Column="1" Foreground="White"/>
+                    <TextBox x:Name="txtSearchInGridDrug" TextChanged="txtSearchInGridDrug_TextChanged" HorizontalAlignment="Left" Margin="11,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="336" Height="26" Grid.Column="1" Background="White" Foreground="#FF0E0909"/>
+                    <Label Content="Наименование:" HorizontalAlignment="Left" Margin="0,160,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label Content="Классификация:" HorizontalAlignment="Left" Margin="-5,208,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label Content="Дозировка:" HorizontalAlignment="Left" Margin="185,162,0,0" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="0.549,0.388"/>
+                    <Label Content="Производитель:" HorizontalAlignment="Left" Margin="158,207,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label Content="Страна происхождения:" HorizontalAlignment="Left" Margin="58,250,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label Content="Поиск:" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Записи на прием" Margin="10,0,-18,0" FontWeight="Bold">
+            <TabItem Header="Остатки" Margin="20 0 20 20" FontWeight="Bold" Background="#FF332E51" BorderBrush="#FF332E51" Foreground="White">
                 <Grid Height="887" Margin="44,0,26,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="27*"/>
-                        <ColumnDefinition Width="767*"/>
+                        <ColumnDefinition Width="22*"/>
+                        <ColumnDefinition Width="629*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="ID Записи на прием:" HorizontalAlignment="Left" Margin="513,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label x:Name="lblIDDestination" Content="ID Назначения:" HorizontalAlignment="Left" Margin="532,124,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label x:Name="lblIDServices" Content="ID Услуги:" HorizontalAlignment="Left" Margin="561,147,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label x:Name="lblDataAndTimeRecord" Content="Дата и время записи:" HorizontalAlignment="Left" Margin="499,169,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label x:Name="lblIDDoctor" Content="ID Доктора:" HorizontalAlignment="Left" Margin="544,189,0,0" VerticalAlignment="Top" Grid.Column="1" Height="25" Width="81"/>
-                    <Label x:Name="lblIDPatient" Content="ID Пациента:" HorizontalAlignment="Left" Margin="541,212,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.575,-0.114" Grid.Column="1"/>
-                    <Label x:Name="lblIDReceivingType" Content="ID Тип записи:" HorizontalAlignment="Left" Margin="534,237,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBox x:Name="txtIDDestination" HorizontalAlignment="Left" Margin="630,128,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1"/>
-                    <TextBox x:Name="txtIDServices" HorizontalAlignment="Left" Margin="630,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1"/>
-                    <TextBox x:Name="txtDataAndTimeRecord" HorizontalAlignment="Left" Margin="630,173,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.223,-0.443" Grid.Column="1"/>
-                    <TextBox x:Name="txtIDDoctor" HorizontalAlignment="Left" Margin="630,196,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1"/>
-                    <TextBox x:Name="txtIDPatient" HorizontalAlignment="Left" Margin="630,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1"/>
-                    <TextBox x:Name="txtIDReceivingType" HorizontalAlignment="Left" Margin="630,242,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1"/>
-                    <TextBox x:Name="txtIDRecord" HorizontalAlignment="Left" Margin="630,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1"/>
-                    <Label Content="Фильтрация:" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="txtFilterIDDestination" TextChanged="txtFilterIDDestination_TextChanged" HorizontalAlignment="Left" Margin="10,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="txtFilterIDServices" TextChanged="txtFilterIDServices_TextChanged" HorizontalAlignment="Left" Margin="51,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1"/>
-                    <TextBox x:Name="txtFilterDataAndTimeRecord" TextChanged="txtFilterDataAndTimeRecord_TextChanged" HorizontalAlignment="Left" Margin="140,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1"/>
-                    <TextBox x:Name="txtFilterIDDoctor" TextChanged="txtFilterIDDoctor_TextChanged" HorizontalAlignment="Left" Margin="229,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1"/>
-                    <TextBox x:Name="txtFilterIDPatient" TextChanged="txtFilterIDPatient_TextChanged" HorizontalAlignment="Left" Margin="318,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1"/>
-                    <TextBox x:Name="txtFilterIDReceivingType" TextChanged="txtFilteIDReceivingType_TextChanged" HorizontalAlignment="Left" Margin="407,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1"/>
-                    <DataGrid x:Name="dgRecord" Margin="10,268,0,86"
+                    <TextBlock Text="ID Остатка:" HorizontalAlignment="Left" Margin="712,-72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Foreground="#FF101010"/>
+                    <Label x:Name="lblIDDrug" Content="ID Препарата:" HorizontalAlignment="Left" Margin="689,-38,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label x:Name="lblIDDepartment" Content="ID Подразделения:" HorizontalAlignment="Left" Margin="656,1,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label x:Name="lblInventoryCheckDate" Content="Дата проверки остатков:" HorizontalAlignment="Left" Margin="625,38,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label x:Name="lblRemainingQuantityOfDrugs" Content="Количество оставшихся препаратов:" HorizontalAlignment="Left" Margin="557,79,0,0" VerticalAlignment="Top" Grid.Column="1" Height="27" Width="224"/>
+                    <Label x:Name="lblStorageLocation" Content="Место хранения:" HorizontalAlignment="Left" Margin="669,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.575,-0.114" Grid.Column="1"/>
+
+                    <TextBox x:Name="txtIDDrug" HorizontalAlignment="Left" Margin="781,-38,0,0" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Background="White" Foreground="#FF080606"/>
+                    <TextBox x:Name="txtIDDepartment" HorizontalAlignment="Left" Margin="781,2,0,0" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Background="White" Foreground="#FF080606"/>
+                    <TextBox x:Name="txtInventoryCheckDate" HorizontalAlignment="Left" Margin="781,39,0,0"  Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.223,-0.443" Grid.Column="1" Background="White" Foreground="#FF080606"/>
+                    <TextBox x:Name="txtRemainingQuantityOfDrugs" HorizontalAlignment="Left" Margin="781,79,0,0" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Background="White" Foreground="#FF080606"/>
+                    <TextBox x:Name="txtStorageLocation" HorizontalAlignment="Left" Margin="781,118,0,0" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Background="White" Foreground="#FF080606"/>
+                    <TextBox x:Name="txtIDInventory" HorizontalAlignment="Left" Margin="781,-77,0,0" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Background="White" Foreground="#FF080606"/>
+                    <TextBox x:Name="txtFilterIDDrug" TextChanged="txtFilterIDDrug_TextChanged" Height="26" HorizontalAlignment="Left" Margin="63,88,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Background="White" Foreground="#FF080606"/>
+                    <TextBox x:Name="txtFilterIDDepartment" TextChanged="txtFilterIDDepartment_TextChanged" Height="26" HorizontalAlignment="Left" Margin="63,136,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Background="White" Foreground="#FF080606"/>
+                    <TextBox x:Name="txtFilterInventoryCheckDate" TextChanged="txtFilterInventoryCheckDate_TextChanged" Height="26" HorizontalAlignment="Left" Margin="383,88,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Background="White" Foreground="#FF080606"/>
+                    <TextBox x:Name="txtFilterRemainingQuantityOfDrugs" TextChanged="txtFilterRemainingQuantityOfDrugs_TextChanged" Height="26" HorizontalAlignment="Left" Margin="383,136,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Background="White" Foreground="#FF080606"/>
+                    <TextBox x:Name="txtFilterStorageLocation" TextChanged="txtFilterStorageLocation_TextChanged" Height="26" HorizontalAlignment="Left" Margin="294,187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Background="White" Foreground="#FF080606"/>
+
+                    <DataGrid x:Name="dgInventory" Margin="10,268,56,86"
 xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
 CanUserAddRows="True"
 ItemsSource="{Binding}"
 EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected"
-AutoGenerateColumns="False" SelectionChanged="dgPatient_SelectionChanged" Grid.ColumnSpan="2" >
+AutoGenerateColumns="False" SelectionChanged="dgConsumption_SelectionChanged" Grid.ColumnSpan="2" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID Записи" Binding="{Binding Path=Id}"/>
-                            <DataGridTextColumn Header="ID Назначения" Binding="{Binding Path=idDestination}"/>
-                            <DataGridTextColumn Header="ID Услуги" Binding="{Binding Path=idServices}"/>
-                            <DataGridTextColumn Header="Дата и время записи" Binding="{Binding Path=dataAndTimeRecord}"/>
-                            <DataGridTextColumn Header="ID Доктора" Binding="{Binding Path=idDoctor}"/>
-                            <DataGridTextColumn Header="ID Пациента" Binding="{Binding Path=idPatient}"/>
-                            <DataGridTextColumn Header="ID Типа приема" Binding="{Binding Path=IdReceivingType}"/>
+                            <DataGridTextColumn Header="ID Остатка" Binding="{Binding Path=Id}"/>
+                            <DataGridTextColumn Header="ID Препарата" Binding="{Binding Path=idDrag}"/>
+                            <DataGridTextColumn Header="ID Подразделения" Binding="{Binding Path=idDepartment}"/>
+                            <DataGridTextColumn Header="Дата проверки остатков" Binding="{Binding Path=inventoryCheckDate}"/>
+                            <DataGridTextColumn Header="Количество оставшихся препаратов" Binding="{Binding Path=remainingQuantityOfDrugs}"/>
+                            <DataGridTextColumn Header="Место хранения" Binding="{Binding Path=storageLocation}"/>
+
                         </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить" Click="MenuItemDeleteInventory_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
                     </DataGrid>
 
 
-                    <Label x:Name="lblMessageRecord" Content="" HorizontalAlignment="Left" Margin="130,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="1"/>
-                    <TextBox x:Name="txtRecordIdToDelete" HorizontalAlignment="Left" Margin="122,809,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBlock Text="ID Записи для удаления: " HorizontalAlignment="Left" Margin="16,806,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить запись" Click="btnAddRecord_Click" HorizontalAlignment="Left" Margin="778,99,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1"/>
-                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить запись" Click="btnUpdateRecord_Click" HorizontalAlignment="Left" Margin="778,217,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1"/>
-                    <Button Style="{StaticResource LoadButtonStyle}" Content="Загрузить записи" Click="btnLoadRecord_Click" HorizontalAlignment="Left" Margin="778,156,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1"/>
-                    <Button Style="{StaticResource DeleteButtonStyle}" Content="Удалить запись" Click="btnDeleteRecord_Click" HorizontalAlignment="Left" Margin="247,806,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1"/>
+                    <Label x:Name="lblMessageInventory" Content="" HorizontalAlignment="Left" Margin="130,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="1"/>
+                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить остаток" Click="btnAddInventory_Click" HorizontalAlignment="Left" Margin="949,-5,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1" Foreground="White"/>
+                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить остаток" Click="btnUpdateInventory_Click" HorizontalAlignment="Left" Margin="949,106,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1" Foreground="White"/>
+                    <Button Style="{StaticResource LoadButtonStyle}" Content="Загрузить остатоки" Click="btnLoadInventory_Click" HorizontalAlignment="Left" Margin="949,50,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1" Foreground="White"/>
 
-                    <TextBox x:Name="txtSearchInGridRecord" TextChanged="txtSearchInGridRecord_TextChanged" HorizontalAlignment="Left" Margin="14,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
-                    <Label Content="ID Назначения:" HorizontalAlignment="Left" Margin="5,194,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <Label Content="ID Услуги:" HorizontalAlignment="Left" Margin="61,192,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label Content="Дата и &#xD;&#xA;время записи:" HorizontalAlignment="Left" Margin="140,176,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label Content="ID Доктора:" HorizontalAlignment="Left" Margin="234,192,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451" Grid.Column="1"/>
-                    <Label Content="ID Пациента:" HorizontalAlignment="Left" Margin="320,192,0,0" VerticalAlignment="Top" Grid.Column="1" Width="80" Height="26"/>
-                    <Label Content="ID Тип записи:" HorizontalAlignment="Left" Margin="405,192,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label Content="Поиск:" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="txtSearchInGridInventory" TextChanged="txtSearchInGridInventory_TextChanged" HorizontalAlignment="Left" Margin="12,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="336" Height="26" Grid.Column="1" Background="White" Foreground="#FF080606"/>
+                    <Label Content="ID Препарата:" HorizontalAlignment="Left" Margin="6,84,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label Content="ID Подразделения:" HorizontalAlignment="Left" Margin="-19,132,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label Content="Дата проверки остатков:" HorizontalAlignment="Left" Margin="222,90,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label Content="Количество оставшихся препаратов:" HorizontalAlignment="Left" Margin="152,132,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451" Grid.Column="1"/>
+                    <Label Content="Место хранения:" HorizontalAlignment="Left" Margin="182,183,0,0" VerticalAlignment="Top" Grid.Column="1" Width="106" Height="26"/>
+                    <Label Content="Поиск:" HorizontalAlignment="Left" Margin="3,1,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Карточка пациента" Margin="17,0,-25,0" FontWeight="Bold">
-                <Grid Height="1084" Margin="42,0,30,0">
+            <TabItem Header="Поставщики" Margin="20 0 20 20" FontWeight="Bold" Foreground="White" BorderBrush="#FF332E51" Background="#FF332E51">
+                <Grid Height="1084" Margin="42,0,30,0" Cursor="Hand">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="27*"/>
                         <ColumnDefinition Width="103*"/>
                         <ColumnDefinition Width="664*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Patient card ID:" HorizontalAlignment="Left" Margin="435,175,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.Column="2"/>
-                    <Label x:Name="lblIdPatient" Content="ID Пациента:" HorizontalAlignment="Left" Margin="441,192,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                    <Label x:Name="lblIdListOfDiseases" Content="ID Списка болезней:" HorizontalAlignment="Left" Margin="400,214,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                    <Label x:Name="lblDataRecord" Content="Дата записи:" HorizontalAlignment="Left" Margin="443,238,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                    <Label x:Name="lblDescriptionPatient" Content="Описание пациента:" HorizontalAlignment="Left" Margin="400,260,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="127" RenderTransformOrigin="0.192,0.447"/>
-                    <Label x:Name="lblProceduresAndTreatments" Content="Процедуры и лечения:" HorizontalAlignment="Left" Margin="390,281,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.575,-0.114" Grid.Column="2" Width="137"/>
-                    <TextBox x:Name="txtIdPatient" HorizontalAlignment="Left" Margin="527,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2"/>
-                    <TextBox x:Name="txtIdListOfDiseases" HorizontalAlignment="Left" Margin="527,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2"/>
-                    <TextBox x:Name="txtDataRecord" HorizontalAlignment="Left" Margin="527,241,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.223,-0.443" Grid.Column="2"/>
-                    <TextBox x:Name="txtDescriptionPatient" HorizontalAlignment="Left" Margin="527,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2"/>
-                    <TextBox x:Name="txtProceduresAndTreatments" HorizontalAlignment="Left" Margin="527,287,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2"/>
-                    <TextBox x:Name="txtPatientCardId" HorizontalAlignment="Left" Margin="527,172,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2"/>
-                    <Label Content="Фильтрация:" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top" Width="88" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="txtFilterIdPatient" TextChanged="txtFilterIDPatientFromPatientCard_TextChanged" HorizontalAlignment="Left" Margin="14,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="txtFilterIdListOfDiseases" TextChanged="txtFilterIdListOfDiseases_TextChanged" HorizontalAlignment="Left" Margin="65,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1"/>
-                    <TextBox x:Name="txtFilterDataRecord" TextChanged="txtFilterDataRecord_TextChanged" HorizontalAlignment="Left" Margin="3,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="2"/>
-                    <TextBox x:Name="txtFilterDescriptionPatients" TextChanged="txtFilterDescriptionPatients_TextChanged" HorizontalAlignment="Left" Margin="96,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="2"/>
-                    <TextBox x:Name="txtFilterProceduresAndTreatments" TextChanged="txtFilterProceduresAndTreatments_TextChanged" HorizontalAlignment="Left" Margin="185,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="2"/>
-                    <DataGrid x:Name="dgPatientCard" Margin="12,312,-2,168"
+                    <TextBlock Text="ID Поставщика:" HorizontalAlignment="Left" Margin="430,48,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.Column="2" Foreground="#FF313131"/>
+                    <Label x:Name="lblCompanyName" Content="Наименование компании:" HorizontalAlignment="Left" Margin="363,82,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                    <Label x:Name="lblContactInformation" Content="Контактная информация:" HorizontalAlignment="Left" Margin="363,120,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                    <Label x:Name="lblSupplyCountry" Content="Страна поставки:" HorizontalAlignment="Left" Margin="413,156,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+
+                    <TextBox x:Name="txtCompanyName" HorizontalAlignment="Left" Margin="527,82,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2" Background="White" Foreground="#FF060404"/>
+                    <TextBox x:Name="txtContactInformation" HorizontalAlignment="Left" Margin="527,119,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2" Background="White" Foreground="Black"/>
+                    <TextBox x:Name="txtSupplyCountry" HorizontalAlignment="Left" Margin="527,156,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.223,-0.443" Grid.Column="2" Background="White" Foreground="#FF060404"/>
+                    <TextBox x:Name="txtSupplierId" HorizontalAlignment="Left" Margin="527,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2" Background="White" Foreground="#FF060404"/>
+                    <TextBox x:Name="txtFilterCompanyName" TextChanged="txtFilterCompanyName_TextChanged" HorizontalAlignment="Left" Margin="145,102,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Background="White" Foreground="#FF060404" Grid.Column="1" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="txtFilterContactInformation" TextChanged="txtFilterContactInformation_TextChanged" HorizontalAlignment="Left" Margin="145,145,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Background="White" Foreground="#FF060404" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="txtFilterSupplyCountry" TextChanged="txtFilterSupplyCountry_TextChanged" HorizontalAlignment="Left" Margin="145,189,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Background="White" Foreground="#FF060404" Grid.ColumnSpan="2"/>
+
+                    <DataGrid x:Name="dgSuppliers" Margin="12,312,27,168"
 xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
 CanUserAddRows="True"
 ItemsSource="{Binding}"
 EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected"
-AutoGenerateColumns="False" SelectionChanged="dgPatient_SelectionChanged" Grid.ColumnSpan="3">
+AutoGenerateColumns="False" SelectionChanged="dgConsumption_SelectionChanged" Grid.ColumnSpan="3">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID Карточки пациента" Binding="{Binding Path=Id}"/>
-                            <DataGridTextColumn Header="ID Пациента" Binding="{Binding Path=idPatient}"/>
-                            <DataGridTextColumn Header="ID Списка болезней" Binding="{Binding Path=idListOfDiseases}"/>
-                            <DataGridTextColumn Header="Дата записи" Binding="{Binding Path=dataRecord}"/>
-                            <DataGridTextColumn Header="Описание пациента" Binding="{Binding Path=descriptionPatient}"/>
-                            <DataGridTextColumn Header="Процедуры и лечения" Binding="{Binding Path=proceduresAndTreatments}"/>
+                            <DataGridTextColumn Header="ID Поставщика" Binding="{Binding Path=Id}"/>
+                            <DataGridTextColumn Header="Наименование компании" Binding="{Binding Path=companyName}"/>
+                            <DataGridTextColumn Header="Контактная информация" Binding="{Binding Path=contactInfo}"/>
+                            <DataGridTextColumn Header="Страна поставки" Binding="{Binding Path=supplyCountry}"/>
+
                         </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить" Click="MenuItemDeleteSuppliers_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
                     </DataGrid>
 
 
-                    <Label x:Name="lblMessagePatientCard" Content="" HorizontalAlignment="Left" Margin="27,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="2"/>
-                    <TextBox x:Name="txtPatientCardIdToDelete" HorizontalAlignment="Left" Margin="37,929,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="99" Grid.Column="2"/>
-                    <TextBlock Text="ID Карточки пациента для удаления : " HorizontalAlignment="Left" Margin="10,931,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.ColumnSpan="3" Width="233"/>
-                    <Button Style="{StaticResource DeleteButtonStyle}" Content="Удалить карточку &#xD;&#xA;пациента" Click="btnDeletePatientCard_Click" HorizontalAlignment="Left" Margin="141,929,0,0" VerticalAlignment="Top" Width="121" Height="40" Grid.Column="2"/>
-                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить карточку &#xD;&#xA;пациента" Click="btnAddPatientCard_Click" HorizontalAlignment="Left" Margin="675,168,0,0" VerticalAlignment="Top" Width="130" Height="37" Grid.Column="2"/>
-                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить карточку &#xD;&#xA;пациента" Click="btnUpdatePatientCard_Click" HorizontalAlignment="Left" Margin="675,266,0,0" VerticalAlignment="Top" Width="130" Height="35" Grid.Column="2"/>
-                    <Button Style="{StaticResource LoadButtonStyle}" Content="Загрузить карточки &#xD;&#xA;пациентов" Click="btnLoadPatientCard_Click" HorizontalAlignment="Left" Margin="675,216,0,0" VerticalAlignment="Top" Width="130" Height="35" Grid.Column="2"/>
-                    <TextBox x:Name="txtSearchInGridPatientCard" TextChanged="txtSearchInGridPatientCard_TextChanged" HorizontalAlignment="Left" Margin="25,209,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="217" Grid.Column="1" Grid.ColumnSpan="2"/>
-                    <Label Content="ID Пациента:" HorizontalAlignment="Left" Margin="12,263,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <Label Content="ID Списка&#xD;&#xA; болезней:" HorizontalAlignment="Left" Margin="60,248,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Label Content="Дата записи:" HorizontalAlignment="Left" Margin="3,260,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451" Grid.Column="2"/>
-                    <Label Content="Описание &#xD;&#xA;пациента:" HorizontalAlignment="Left" Margin="101,247,0,0" VerticalAlignment="Top" Grid.Column="2" Width="74" Height="40" RenderTransformOrigin="0.6,0.552"/>
-                    <Label Content="Процедуры и&#xD;&#xA; лечения:" HorizontalAlignment="Left" Margin="182,248,0,0" VerticalAlignment="Top" Grid.Column="2" Width="90" Height="40"/>
-                    <Label Content="Поиск:" HorizontalAlignment="Left" Margin="10,201,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label x:Name="lblMessageSuppliers" Content="" HorizontalAlignment="Left" Margin="27,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="2"/>
+                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить поставщика" Click="btnAddSuppliers_Click" HorizontalAlignment="Left" Margin="789,47,0,0" VerticalAlignment="Top" Width="147" Height="37" Grid.Column="2" Foreground="White"/>
+                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить поставщика" Click="btnUpdateSuppliers_Click" HorizontalAlignment="Left" Margin="789,145,0,0" VerticalAlignment="Top" Width="147" Height="35" Grid.Column="2" Foreground="White"/>
+                    <Button Style="{StaticResource LoadButtonStyle}" Content="Загрузить поставщиков" Click="btnLoadSuppliers_Click" HorizontalAlignment="Left" Margin="789,95,0,0" VerticalAlignment="Top" Width="147" Height="35" Grid.Column="2" Foreground="White"/>
+                    <TextBox x:Name="txtSearchInGridSuppliers" TextChanged="txtSearchInGridSuppliers_TextChanged" HorizontalAlignment="Left" Margin="15,8,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="336" Height="26" Grid.Column="1" Grid.ColumnSpan="2" Background="White" Foreground="#FF060404"/>
+                    <Label Content="Наименование компании:" HorizontalAlignment="Left" Margin="22,101,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label Content="Контактная информация:" HorizontalAlignment="Left" Margin="26,139,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label Content="Страна поставки:" HorizontalAlignment="Center" Margin="0,189,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451" Grid.Column="1"/>
+
+                    <Label Content="Поиск:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Услуги" Margin="25,0,-33,0" FontWeight="Bold">
+            <TabItem Header="Поставки" Margin="20 0 20 20" FontWeight="Bold" Background="#FF332E51" BorderBrush="#FF332E51" Foreground="White">
                 <Grid Height="1084" Margin="29,0,24,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="41*"/>
                         <ColumnDefinition Width="1152*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Services ID:" HorizontalAlignment="Left" Margin="620,171,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.Column="1" Height="16" Width="65"/>
-                    <Label x:Name="lblIDServicesforServices" Content="ID Услуги:" HorizontalAlignment="Left" Margin="620,192,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="68"/>
-                    <Label x:Name="lblNameServices" Content="Наименование услуги:" HorizontalAlignment="Left" Margin="546,214,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="143"/>
-                    <Label x:Name="lblDescriptionServices" Content="Описание услуги:" HorizontalAlignment="Left" Margin="576,237,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="112"/>
-                    <Label x:Name="lblPrice" Content="Цена:" HorizontalAlignment="Left" Margin="639,262,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="49" RenderTransformOrigin="0.192,0.447"/>
-                    <TextBox x:Name="txtIdServices" HorizontalAlignment="Left" Margin="694,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Height="18"/>
-                    <TextBox x:Name="txtNameServices" HorizontalAlignment="Left" Margin="694,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Height="18"/>
-                    <TextBox x:Name="txtDescriptionServices" HorizontalAlignment="Left" Margin="694,241,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.223,-0.443" Grid.Column="1" Height="18"/>
-                    <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Margin="694,266,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Height="18"/>
-                    <TextBox x:Name="txtServicesId" HorizontalAlignment="Left" Margin="694,172,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Height="18"/>
-                    <Label Content="Фильтрация:" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Height="26"/>
-                    <TextBox x:Name="txtFilterNameServices" TextChanged="txtFilterNameServices_TextChanged" HorizontalAlignment="Left" Margin="16,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2" Height="18"/>
-                    <TextBox x:Name="txtFilterDescriptionServices" TextChanged="txtFilterDescriptionServices_TextChanged" HorizontalAlignment="Left" Margin="78,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" RenderTransformOrigin="0.417,0.559" Height="18"/>
-                    <TextBox x:Name="txtFilterPrice" TextChanged="txtFilterPrice_TextChanged" HorizontalAlignment="Left" Margin="184,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Height="18"/>
-                    <DataGrid x:Name="dgServices" Margin="12,312,-2,168"
+                    <TextBlock Text="ID Поставки:" HorizontalAlignment="Left" Margin="601,33,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.Column="1" Height="16" Width="83" Foreground="Black"/>
+                    <Label x:Name="lblIDDrugForSupply" Content="ID Препарата:" HorizontalAlignment="Center" Margin="0,69,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="100"/>
+                    <Label x:Name="lblIDSupplierForSupply" Content="ID Поставщика:" HorizontalAlignment="Left" Margin="580,109,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="109"/>
+                    <Label x:Name="lblSupplyDate" Content="Дата поставки:" HorizontalAlignment="Center" Margin="0,144,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="106"/>
+                    <Label x:Name="lblQuantity" Content="Количество:" HorizontalAlignment="Left" Margin="601,184,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="83" RenderTransformOrigin="0.192,0.447"/>
+                    <Label x:Name="lblCost" Content="Стоимость:" HorizontalAlignment="Left" Margin="609,219,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="75" RenderTransformOrigin="0.192,0.447"/>
+                    <TextBox x:Name="txtIDDrugForSupply" HorizontalAlignment="Left" Margin="690,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Height="26" Background="White" Foreground="#FF0C0909"/>
+                    <TextBox x:Name="txtIDSupplierForSupply" HorizontalAlignment="Left" Margin="690,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Height="26" Background="White" Foreground="#FF0C0909"/>
+                    <TextBox x:Name="txtSupplyDate" HorizontalAlignment="Left" Margin="690,144,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.223,-0.443" Grid.Column="1" Height="26" Background="White" Foreground="#FF0C0909"/>
+                    <TextBox x:Name="txtQuantity" HorizontalAlignment="Left" Margin="690,183,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Height="26" Background="White" Foreground="#FF0C0909"/>
+                    <TextBox x:Name="txtCost" HorizontalAlignment="Left" Margin="690,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Height="26" Background="White" Foreground="#FF0C0909"/>
+                    <TextBox x:Name="txtSupplyId" HorizontalAlignment="Left" Margin="690,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="1" Height="26" Background="White" Foreground="#FF0C0909"/>
+                    <TextBox x:Name="txtFilterIDDrugForSupply" TextChanged="txtFilterIDDrugForSupply_TextChanged" HorizontalAlignment="Left" Margin="73,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Height="26" Background="White" Foreground="#FF0C0909" Grid.Column="1"/>
+                    <TextBox x:Name="txtFilterIDSupplierForSupply" TextChanged="txtFilterIDSupplierForSupply_TextChanged" HorizontalAlignment="Left" Margin="73,157,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" RenderTransformOrigin="0.417,0.559" Height="26" Background="White" Foreground="#FF0C0909"/>
+                    <TextBox x:Name="txtFilterSupplyDate" TextChanged="txtFilterSupplyDate_TextChanged" HorizontalAlignment="Left" Margin="271,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Height="26" Background="White" Foreground="#FF0C0909"/>
+                    <TextBox x:Name="txtFilterQuantity" TextChanged="txtFilterQuantity_TextChanged" HorizontalAlignment="Left" Margin="271,157,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Height="26" Background="White" Foreground="#FF0C0909"/>
+                    <TextBox x:Name="txtFilterCost" TextChanged="txtFilterCost_TextChanged" HorizontalAlignment="Left" Margin="160,216,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.Column="1" Height="26" Background="White" Foreground="#FF0C0909"/>
+                    <DataGrid x:Name="dgSupply" Margin="12,312,37,168"
 xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
 CanUserAddRows="True"
 ItemsSource="{Binding}"
 EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected"
-AutoGenerateColumns="False" SelectionChanged="dgPatient_SelectionChanged" Grid.ColumnSpan="2">
+AutoGenerateColumns="False" SelectionChanged="dgConsumption_SelectionChanged" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID Услуги" Binding="{Binding Path=Id}"/>
-                            <DataGridTextColumn Header="Наименование услуги" Binding="{Binding Path=nameService}"/>
-                            <DataGridTextColumn Header="Описание услуги" Binding="{Binding Path=descriptionService}"/>
-                            <DataGridTextColumn Header="Цена" Binding="{Binding Path=price}"/>
+                            <DataGridTextColumn Header="ID Поставки" Binding="{Binding Path=Id}"/>
+                            <DataGridTextColumn Header="ID Препарата" Binding="{Binding Path=idDrug}"/>
+                            <DataGridTextColumn Header="ID Поставщика" Binding="{Binding Path=idSupplier}"/>
+                            <DataGridTextColumn Header="Дата поставки" Binding="{Binding Path=supplyDate}"/>
+                            <DataGridTextColumn Header="Количество" Binding="{Binding Path=quantity}"/>
+                            <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=cost}"/>
                         </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить" Click="MenuItemDeleteSupply_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
                     </DataGrid>
 
 
-                    <Label x:Name="lblMessageServices" Content="" HorizontalAlignment="Left" Margin="194,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="1" Height="26"/>
-                    <TextBox x:Name="txtServicesIdToDelete" HorizontalAlignment="Left" Margin="110,931,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="99" Grid.Column="1" Height="18"/>
-                    <TextBlock Text="ID Услуги для удаления: " HorizontalAlignment="Left" Margin="10,931,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.ColumnSpan="2" Height="16" Width="145"/>
-                    <Button Style="{StaticResource DeleteButtonStyle}" Content="Удалить услугу" Click="btnDeleteServices_Click" HorizontalAlignment="Left" Margin="214,931,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1"/>
-                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить услугу" Click="btnAddServices_Click" HorizontalAlignment="Left" Margin="842,168,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1"/>
-                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить услугу" Click="btnUpdateServices_Click" HorizontalAlignment="Left" Margin="842,266,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1"/>
-                    <Button Style="{StaticResource LoadButtonStyle}" Content="Загрузить услуги" Click="btnLoadServices_Click" HorizontalAlignment="Left" Margin="842,216,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1"/>
-                    <TextBox x:Name="txtSearchInGridServices" TextChanged="txtSearchInGridServices_TextChanged" HorizontalAlignment="Left" Margin="15,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="217" Grid.Column="1" Height="18"/>
-                    <Label Content="Наименование &#xD;&#xA;услуги:" HorizontalAlignment="Left" Margin="12,247,0,0" VerticalAlignment="Top" Width="103" Grid.ColumnSpan="2" Height="42"/>
-                    <Label Content="Описание услуги:" HorizontalAlignment="Left" Margin="65,258,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451" Grid.Column="1" Width="111" Height="26"/>
-                    <Label Content="Цена:" HorizontalAlignment="Left" Margin="205,258,0,0" VerticalAlignment="Top" Grid.Column="1" Width="42" Height="26" RenderTransformOrigin="0.6,0.552"/>
-                    <Label Content="Поиск:" HorizontalAlignment="Left" Margin="12,175,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="50"/>
+                    <Label x:Name="lblMessageSupply" Content="" HorizontalAlignment="Left" Margin="194,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="1" Height="26"/>
+                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить поставку" Click="btnAddSupply_Click" HorizontalAlignment="Left" Margin="878,44,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1" Foreground="White"/>
+                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить поставку" Click="btnUpdateSupply_Click" HorizontalAlignment="Left" Margin="878,142,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1" Foreground="White"/>
+                    <Button Style="{StaticResource LoadButtonStyle}" Content="Загрузить поставки" Click="btnLoadSupply_Click" HorizontalAlignment="Left" Margin="878,92,0,0" VerticalAlignment="Top" Width="122" Height="30" Grid.Column="1" Foreground="White"/>
+                    <TextBox x:Name="txtSearchInGridSupply" TextChanged="txtSearchInGridSupply_TextChanged" HorizontalAlignment="Left" Margin="3,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="336" Grid.Column="1" Height="26" Background="White" Foreground="#FF0C0909"/>
+                    <Label Content="ID Препарата:" HorizontalAlignment="Left" Margin="16,115,0,0" VerticalAlignment="Top" Width="97" Grid.ColumnSpan="2" Height="29"/>
+                    <Label Content="ID Поставщика:" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451" Width="111" Height="26" Grid.ColumnSpan="2"/>
+                    <Label Content="Дата поставки:" HorizontalAlignment="Left" Margin="171,118,0,0" VerticalAlignment="Top" Grid.Column="1" Width="103" Height="26" RenderTransformOrigin="0.6,0.552"/>
+                    <Label Content="Количество:" HorizontalAlignment="Left" Margin="186,157,0,0" VerticalAlignment="Top" Grid.Column="1" Width="83" Height="26" RenderTransformOrigin="0.6,0.552"/>
+                    <Label Content="Стоимость:" HorizontalAlignment="Left" Margin="76,215,0,0" VerticalAlignment="Top" Grid.Column="1" Width="79" Height="26" RenderTransformOrigin="0.6,0.552"/>
+                    <Label Content="Поиск:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="50"/>
 
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Список болезней" Margin="33,0,-41,0" FontWeight="Bold">
-                <Grid Height="1084" Margin="33,0,20,0">
+            <TabItem Header="Пользователи" Margin="20 0 20 20" FontWeight="Bold" Background="#FF332E51" BorderBrush="#FF332E51" Foreground="White">
+                <Grid Margin="33,1,20,13" Width="1341">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="41*"/>
                         <ColumnDefinition Width="217*"/>
                         <ColumnDefinition Width="935*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label x:Name="lblIDListOfDiseases" Content="ID Списка болезни:" HorizontalAlignment="Left" Margin="399,168,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="123"/>
-                    <Label x:Name="lblDiseases" Content="Болезнь:" HorizontalAlignment="Left" Margin="460,191,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="62"/>
-                    <Label x:Name="lblTreatment" Content="Лечение:" HorizontalAlignment="Left" Margin="459,214,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="64"/>
-                    <TextBox x:Name="txtDiseases" HorizontalAlignment="Left" Margin="527,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2" Height="18"/>
-                    <TextBox x:Name="txtTreatment" HorizontalAlignment="Left" Margin="527,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.223,-0.443" Grid.Column="2" Height="18"/>
-                    <TextBox x:Name="txtIDListOfDiseases" HorizontalAlignment="Left" Margin="527,172,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2" Height="18"/>
-                    <Label Content="Фильтрация:" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Height="26"/>
-                    <TextBox x:Name="txtFilterDiseases" TextChanged="txtFilterDiseases_TextChanged" HorizontalAlignment="Left" Margin="16,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2" Height="18"/>
-                    <TextBox x:Name="txtFilterTreatment" TextChanged="txtFilterTreatment_TextChanged" HorizontalAlignment="Left" Margin="78,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" Grid.Column="1" RenderTransformOrigin="0.417,0.559" Height="18"/>
+                    <Label x:Name="lblIDUser" Content="ID Пользователя:" HorizontalAlignment="Left" Margin="394,35,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="123"/>
+                    <Label x:Name="lblFullName" Content="ФИО:" HorizontalAlignment="Left" Margin="462,72,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="42"/>
+                    <Label x:Name="lblPosition" Content="Должность:" HorizontalAlignment="Left" Margin="427,110,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="85"/>
+                    <Label x:Name="lblAccessRight" Content="Права доступа:" HorizontalAlignment="Left" Margin="411,151,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="101"/>
+                    <TextBox x:Name="txtFullName" HorizontalAlignment="Left" Margin="517,72,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2" Height="26" Background="White" Foreground="#FF100D0D"/>
+                    <TextBox x:Name="txtPosition" HorizontalAlignment="Left" Margin="517,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.223,-0.443" Grid.Column="2" Height="26" Background="White" Foreground="#FF100D0D"/>
+                    <TextBox x:Name="txtAccessRight" HorizontalAlignment="Left" Margin="517,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.223,-0.443" Grid.Column="2" Height="26" Background="White" Foreground="#FF100D0D"/>
+                    <TextBox x:Name="txtIDUser" HorizontalAlignment="Left" Margin="517,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2" Height="26" Background="White" Foreground="#FF100D0D"/>
+                    <TextBox x:Name="txtFilterFullName" TextChanged="txtFilterFullName_TextChanged" HorizontalAlignment="Left" Margin="51,123,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="151" Height="26" Background="White" Foreground="#FF100D0D" Grid.Column="1"/>
+                    <TextBox x:Name="txtFilterPosition" TextChanged="txtFilterPosition_TextChanged" HorizontalAlignment="Left" Margin="51,168,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="151" Grid.Column="1" RenderTransformOrigin="0.417,0.559" Height="26" Background="White" Foreground="#FF100D0D"/>
+                    <TextBox x:Name="txtFilterAccessRight" TextChanged="txtFilterAccessRight_TextChanged" HorizontalAlignment="Left" Margin="51,216,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" Grid.Column="1" RenderTransformOrigin="0.417,0.559" Height="26" Background="White" Foreground="#FF100D0D"/>
 
-                    <DataGrid x:Name="dgListOfDiseases" Margin="12,312,-2,168"
+                    <DataGrid x:Name="dgUsers" Margin="12,312,54,168"
 xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
 CanUserAddRows="True"
 ItemsSource="{Binding}"
 EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected"
-AutoGenerateColumns="False" SelectionChanged="dgPatient_SelectionChanged" Grid.ColumnSpan="3">
+AutoGenerateColumns="False" SelectionChanged="dgConsumption_SelectionChanged" Grid.ColumnSpan="3">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID Списка болезней" Binding="{Binding Path=Id}"/>
-                            <DataGridTextColumn Header="Болезнь" Binding="{Binding Path=diseases}"/>
-                            <DataGridTextColumn Header="Лечение" Binding="{Binding Path=treatment}"/>
+                            <DataGridTextColumn Header="ID Пользователя" Binding="{Binding Path=Id}"/>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding Path=fullName}"/>
+                            <DataGridTextColumn Header="Должность" Binding="{Binding Path=position}"/>
+                            <DataGridTextColumn Header="Права доступа" Binding="{Binding Path=accessRights}"/>
                         </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить" Click="MenuItemDeleteUsers_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
                     </DataGrid>
 
 
-                    <Label x:Name="lblMessageListOfDiseases" Content="" HorizontalAlignment="Left" Margin="27,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="2" Height="26"/>
-                    <TextBox x:Name="txtListOfDiseasesIdToDelete" HorizontalAlignment="Left" Margin="110,931,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="99" Grid.Column="1" Height="18"/>
-                    <TextBlock Text="ID Списка для удаления: " HorizontalAlignment="Left" Margin="10,931,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.ColumnSpan="2" Height="16" Width="147"/>
-                    <Button Style="{StaticResource DeleteButtonStyle}" Content="Удалить список болезни" Click="btnDeleteListOfDiseases_Click" HorizontalAlignment="Left" Margin="60,927,0,0" VerticalAlignment="Top" Width="158" Height="30" Grid.Column="2"/>
-                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить список болезни" Click="btnAddListOfDiseases_Click" HorizontalAlignment="Left" Margin="675,168,0,0" VerticalAlignment="Top" Width="166" Height="30" Grid.Column="2"/>
-                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить список болезни" Click="btnUpdateListOfDiseases_Click" HorizontalAlignment="Left" Margin="675,266,0,0" VerticalAlignment="Top" Width="166" Height="30" Grid.Column="2"/>
-                    <Button Style="{StaticResource LoadButtonStyle}" Content="Загрузить список болезни" Click="btnLoadListOfDiseases_Click" HorizontalAlignment="Left" Margin="675,216,0,0" VerticalAlignment="Top" Width="166" Height="30" Grid.Column="2"/>
-                    <TextBox x:Name="txtSearchInGridListOfDiseases" TextChanged="txtSearchInGridListOfDiseases_TextChanged" HorizontalAlignment="Left" Margin="26,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="217" Grid.Column="1" Grid.ColumnSpan="2" Height="18"/>
-                    <Label Content="Болезнь:" HorizontalAlignment="Left" Margin="23,258,0,0" VerticalAlignment="Top" Width="64" Grid.ColumnSpan="2" Height="26"/>
-                    <Label Content="Лечение:" HorizontalAlignment="Left" Margin="88,258,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451" Grid.Column="1" Height="26" Width="64"/>
-                    <Label Content="Поиск:" HorizontalAlignment="Left" Margin="12,175,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="50"/>
+                    <Label x:Name="lblMessageUsers" Content="" HorizontalAlignment="Left" Margin="27,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="2" Height="26"/>
+                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить пользователя" Click="btnAddUser_Click" HorizontalAlignment="Left" Margin="694,50,0,0" VerticalAlignment="Top" Width="166" Height="30" Grid.Column="2" Foreground="White"/>
+                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить пользователя" Click="btnUpdateUser_Click" HorizontalAlignment="Left" Margin="694,148,0,0" VerticalAlignment="Top" Width="166" Height="30" Grid.Column="2" Foreground="White"/>
+                    <Button Style="{StaticResource LoadButtonStyle}" Content="Загрузить пользователей" Click="btnLoadUser_Click" HorizontalAlignment="Left" Margin="694,98,0,0" VerticalAlignment="Top" Width="166" Height="30" Grid.Column="2" Foreground="White"/>
+                    <TextBox x:Name="txtSearchInGridUser" TextChanged="txtSearchInGridUser_TextChanged" HorizontalAlignment="Left" Margin="23,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="336" Grid.Column="1" Grid.ColumnSpan="2" Height="26" Background="White" Foreground="#FF100D0D"/>
+                    <Label Content="ФИО:" HorizontalAlignment="Left" Margin="6,123,0,0" VerticalAlignment="Top" Width="40" Height="26" Grid.Column="1"/>
+                    <Label Content="Должность:" HorizontalAlignment="Left" Margin="14,168,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451" Height="26" Width="77" Grid.ColumnSpan="2"/>
+                    <Label Content="Права доступа:" HorizontalAlignment="Left" Margin="0,216,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.13,0.451" Height="26" Width="96" Grid.ColumnSpan="2"/>
+                    <Label Content="Поиск:" HorizontalAlignment="Left" Margin="9,5,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="50"/>
 
                 </Grid>
             </TabItem>
-
-            <TabItem Header="Тип приема" Margin="33,0,-41,0" FontWeight="Bold">
-                <Grid Height="1084" Margin="33,0,20,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="27*"/>
-                        <ColumnDefinition Width="103*"/>
-                        <ColumnDefinition Width="664*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Label x:Name="lblIDReceivingtype" Content="ID Типа приема:" HorizontalAlignment="Left" Margin="418,168,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                    <Label x:Name="lblNameReceivingType" Content="Тип приема:" HorizontalAlignment="Left" Margin="440,191,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                    <TextBox x:Name="txtNameReceivingType" HorizontalAlignment="Left" Margin="527,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2"/>
-                    <TextBox x:Name="txtIDReceivingtype" HorizontalAlignment="Left" Margin="527,172,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Grid.Column="2"/>
-                    <Label Content="Фильтрация:" HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="txtFilterNameReceivingType" TextChanged="txtFilterReceivingType_TextChanged" HorizontalAlignment="Left" Margin="16,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2"/>
-
-
-                    <DataGrid x:Name="dgReceivingType" Margin="12,312,-2,168"
-xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
-CanUserAddRows="True"
-ItemsSource="{Binding}"
-EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected"
-AutoGenerateColumns="False" SelectionChanged="dgPatient_SelectionChanged" Grid.ColumnSpan="3">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID Типа приема" Binding="{Binding Path=Id}"/>
-                            <DataGridTextColumn Header="Тип приема" Binding="{Binding Path=nameReceiving}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-
-                    <Label x:Name="lblMessageReceivingType" Content="" HorizontalAlignment="Left" Margin="27,242,0,0" VerticalAlignment="Top" Width="119" Grid.Column="2"/>
-                    <TextBox x:Name="txtReceivingTypeIdToDelete" HorizontalAlignment="Left" Margin="1,931,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="99" Grid.Column="2"/>
-                    <TextBlock Text="ID Типа приема для удаления: " HorizontalAlignment="Left" Margin="10,931,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <Button Style="{StaticResource DeleteButtonStyle}" Content="Удалить тип приема" Click="btnDeleteReceivingType_Click" HorizontalAlignment="Left" Margin="106,927,0,0" VerticalAlignment="Top" Width="158" Height="30" Grid.Column="2"/>
-                    <Button Style="{StaticResource AddButtonStyle}" Content="Добавить тип приема" Click="btnAddReceivingType_Click" HorizontalAlignment="Left" Margin="675,168,0,0" VerticalAlignment="Top" Width="166" Height="30" Grid.Column="2"/>
-                    <Button Style="{StaticResource UpdateButtonStyle}" Content="Обновить тип приема" Click="btnUpdateReceivingType_Click" HorizontalAlignment="Left" Margin="675,266,0,0" VerticalAlignment="Top" Width="166" Height="30" Grid.Column="2"/>
-                    <Button Style="{StaticResource LoadButtonStyle}" Content="Загрузить тип приема" Click="btnLoadReceivingType_Click" HorizontalAlignment="Left" Margin="675,216,0,0" VerticalAlignment="Top" Width="166" Height="30" Grid.Column="2"/>
-                    <TextBox x:Name="txtSearchInGridReceivingType" TextChanged="txtSearchInGridReceivingType_TextChanged" HorizontalAlignment="Left" Margin="21,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="217" Grid.Column="1" Grid.ColumnSpan="2"/>
-                    <Label Content="Тип приема:" HorizontalAlignment="Left" Margin="16,258,0,0" VerticalAlignment="Top" Width="95" Grid.ColumnSpan="2"/>
-                    <Label Content="Поиск:" HorizontalAlignment="Left" Margin="12,175,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-
-                </Grid>
-            </TabItem>
-
         </TabControl>
-
-        <!--Search TextBox
-        <Grid Width="300" HorizontalAlignment="Left">
-            <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-                       Panel.ZIndex="1" Text="Search here ... "
-                       Visibility="Visible"/>
-            <TextBox x:Name="txtSearch"/>
-            
-        </Grid>
-        -->
     </Grid>
 </Window>
